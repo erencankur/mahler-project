@@ -1,0 +1,101 @@
+# Matematiksel tanımlar ve API sözleşmesi
+
+[English](../en/SPECIFICATION.md)
+
+Tarih: 2026-09-30. Faz 0 sözleşmesi ve Faz 1 uygulama kapsamı.
+
+## Dizi ve konum kuralları
+
+`S = concat(1,2,3,...)`, pozitif sayıların başta sıfır ve ayraç içermeyen standart ondalık gösterimlerini birleştirir. Konum 1'de rakam 1 vardır. Champernowne sabitinin başındaki `0.` gösterimi `S`'ye dahil değildir. `d_n`, n'inci kaynak sayıyı değil, rakam konumunu belirtir.
+
+Pozitif `m` sayısının basamak sayısı `k(m)` olmak üzere:
+
+```text
+B(0) = 0
+B(k) = sum(j=1..k, 9 * 10^(j-1) * j)
+P(m) = 1 + B(k(m)-1) + k(m) * (m - 10^(k(m)-1))
+```
+
+`P(m)`, önceki görünümlerden bağımsız olarak `m`'nin kendi sırası geldiğindeki başlangıcıdır. Eşdeğer `P(m)=k(m)*m+1-(10^k(m)-1)/9` özdeşliği [OEIS A117804](https://oeis.org/A117804) içinde yer alır. Sonuç temsil edilebilirken büyük bir ara çarpım taşmasın diye uygulama, denetlenen basamak grubu toplamları kullanır.
+
+Doğrudan sorguda `B(k-1)<n≤B(k)` koşulunu sağlayan `k` bulunur:
+
+```text
+r = n - B(k-1) - 1
+source_number = 10^(k-1) + floor(r/k)
+digit_offset = r mod k
+```
+
+Ofset soldan ve sıfır tabanlıdır. `digit_at(n)` ilgili kaynak rakamını çıkarır. İşlem maliyeti `O(log n)` basamak grubu adımı, sabit genişlikli sayılar için bellek sabittir. Taşacak bir grup uzunluğu, istenen konumdan büyük kabul edilir; işaretsiz taşmayla hesaplanmaz.
+
+## Faz 2 için erken görünüm tanımları
+
+Pozitif `m` için `F(m)` ilk eşleşmenin başlangıcıdır:
+
+```text
+is_early(m) = F(m) < P(m)
+E(m) = P(m)'den küçük farklı eşleşme başlangıçlarının sayısı
+A(m) = P(m) - F(m)
+```
+
+Örtüşmeler dahil farklı başlangıçlar sayılır. Doğal ve sonraki görünümler `E(m)` hesabına dahil edilmez. Eşleşme birden fazla kaynak sayı sınırını aşabilir. Başta sıfır bulunan pencere, pozitif hedefin standart gösterimi değildir.
+
+Karşılaştırma görünümün başlangıcına göre yapılır. Kaynak uzunluğu, sınır sayısı ve elde zinciri görünüm düzeyindeki ölçütlerdir; hedef sayı adedi değildir. Erkenci olmayan hedeflerde `F=P`, `E=0`, `A=0` olur.
+
+Araştırma aralığı `1≤m≤1.000.000` olarak sabittir. Önek, 1.000.000 kaynak sayısının tamamını içerir ve 5.888.896 rakam uzunluğundadır. Her hedefin doğal görünümü önekte vardır; bu aralık için ilk ve erken görünümler eksiksiz hesaplanabilir. Sonsuz dizide toplam frekans hesaplanmaz.
+
+## Uygulanan kütüphane API'si
+
+Başlık dosyası: `include/mahler/sequence.hpp`. Ad alanı: `mahler`.
+
+| API | Sonuç ve sınırlar |
+| --- | --- |
+| `decimal_digits(number)` | Her `uint64_t` için basamak sayısı; yardımcı işlev sıfır için 1 döndürür |
+| `locate_digit(position)` | `1..UINT64_MAX` için kaynak sayı, sıfır tabanlı ofset ve uzunluk |
+| `digit_at(position)` | `1..UINT64_MAX` için 0–9 arasında rakam |
+| `natural_position(number)` | `uint64_t` içinde temsil edilebilen doğal başlangıç |
+| `make_prefix(last_integer)` | `1..1.000.000` sınırlarında `1..last_integer` birleştirmesi |
+
+Basamak sayısı yardımcısı dışındaki API'ler sıfır girdide `std::invalid_argument` üretir. Bir milyonun üzerindeki önek isteği `std::length_error`, temsil edilemeyen doğal konum `std::overflow_error` üretir. Bellek tahsis hataları çağırana iletilir.
+
+`UINT64_MAX = 18446744073709551615`. Doğal başlangıcı temsil edilebilen en büyük hedef `1029360799201087511`, başlangıcı `18446744073709551599`'dur. `UINT64_MAX` konumundaki rakam, bu hedefin 16 ofsetindeki 5 rakamıdır. Doğal konum sınırını aşan hedefler, sayısal değerleri `uint64_t` içinde olsa bile reddedilir.
+
+## Komut satırı ve JSON şema sürümü 1
+
+```text
+mahler digit <position> [--format text|json]
+mahler inspect <number> [--format text|json]
+mahler --help
+mahler --version
+```
+
+Varsayılan çıktı metindir. Girdiler işaret, boşluk, ayraç, kesir ve son ek içermeyen pozitif ondalık tam sayılardır. Baştaki sıfırlar kabul edilir ve normalleştirilir. Seçenekler sayısal girdiden sonra gelir. Bilinmeyen veya yinelenen seçenekler hatadır.
+
+Çıkış kodları: 0 başarı; 1 çalışma/çıktı hatası; 2 kullanım veya geçersiz girdi; 3 girdi/doğal konum taşması. Başarılı sonuç stdout'a, hata stderr'e yazılır; hatalı sorgu stdout'ta kısmi sonuç üretmez. Komut satırı etiketleri ve hataları İngilizce, belgeler iki dildedir.
+
+| Komut | JSON alanları |
+| --- | --- |
+| `digit` | `schema_version` (tam sayı), `position` (ondalık metin), `digit` (tam sayı), `source_number` (ondalık metin), `digit_offset` (tam sayı), `digit_count` (tam sayı) |
+| `inspect` | `schema_version` (tam sayı), `number` (ondalık metin), `digit_count` (tam sayı), `natural_position` (ondalık metin) |
+
+Büyük olabilecek tam sayılar kayıpsız okunabilmeleri için ondalık metindir. Faz 1, hesaplanmadıkları için `is_early`, `first_position` ve frekans alanlarını üretmez.
+
+## Planlanan veri seti sözleşmesi
+
+Toplu veri seti henüz uygulanmadı. `number`, `digit_count`, `natural_position`, `first_position`, `is_early`, `early_frequency`, `advance_digits` alanlarını içerecek; özel sayı alanları ancak ilgili analiz uygulandığında eklenecek. Erkenci olmayanlar dahil her hedef için tek özet satır üretilecek.
+
+CSV; UTF-8, İngilizce alan adları, yerel ayraç içermeyen ondalık tam sayılar ve `true`/`false` mantıksal değerler kullanacak. JSON büyük tam sayıları ondalık metin olarak koruyacak. Veri setinin kendi açıklanan şema sürümü olacak; mevcut sorgu şemasının sürümü otomatik olarak kullanılmayacak. Hesaplanmamış isteğe bağlı alanlar bulunmayacak veya açıkça kullanılamıyor olarak gösterilecek; sessizce false yazılmayacak. Tam görünüm kayıtları hedef özetinden ayrı tutulacak.
+
+## Kaynak ve doğrulama politikası
+
+- Rakam dizisi: [OEIS A033307](https://oeis.org/A033307).
+- Doğal konum: [OEIS A117804](https://oeis.org/A117804).
+- Erkencilik: [OEIS A116700](https://oeis.org/A116700).
+- Dış adet hedefleri: [OEIS A160234](https://oeis.org/A160234).
+- Araştırma kaynakları ve grafik kararları: [ROADMAP.md](../../ROADMAP.md).
+
+OEIS indeks kuralları her dizi için ayrı incelenecek. Baştaki sıfır ve sıfır tabanlı indeks birbirinin görünür ofsetini dengeleyebilir; konumlara körlemesine kaydırma uygulanmayacak. Yol haritasındaki literatür erişim tarihi 2026-09-30'dur; çevrimiçi veriler sonradan genişletilebilir.
+
+Normallik asimptotik bir özelliktir. Sonlu blok sapması `delta_q(T)` ve erken frekans `E(m)` farklı ölçütlerdir. Sonlu tarama veya grafik genel normallik teoremini kanıtlamaz. Bilinen sonuçlar, yeni hesaplamalı bulgular ve hipotezler ayrı işaretlenecek.
+
+Çekirdek doğrulaması; 10.000'e kadar bağımsız metin birleştirmesi, bilinen örnek/sınırlar ve büyük konumlar için daha geniş aritmetik kullanan kapalı formül referansıyla yapılır. Yalnız test referansı Apple Clang/GCC `__uint128_t` uzantısını kullanır; uygulama standart C++20 sabit genişlikli aritmetik kullanır. Bir milyonluk önek kontrolü uzunluğu ve sonunu doğrular; erkenci adetlerini değil. Eski dosyalar salt okunur kalır.

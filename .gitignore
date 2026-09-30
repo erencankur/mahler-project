@@ -1,0 +1,6 @@
+.DS_Store
+/build*/
+/.tools/
+/CMakeUserPresets.json
+/.cache/
+*.dSYM/
