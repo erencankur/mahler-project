@@ -28,25 +28,62 @@ The C++ program provides direct digit lookup, early-bird searches, reproducible 
 
 `inspect` reports natural position only; use `early` for early-bird properties.
 
-## Build on macOS
+## Run it on macOS
 
 Requirements: Xcode Command Line Tools (or Xcode), CMake 3.20 or newer, and a C++20 compiler. The initial supported environment is Apple Clang on macOS. Core calculations and SVG spirals need no Python, Gnuplot, or PNG library. Optional PNG export requires libpng; statistical rendering requires Gnuplot 6.x and jq.
 
-If the command-line developer tools are missing, install them using `xcode-select --install`. Obtain CMake from its [official download page](https://cmake.org/download/) or your package manager.
-
-Run from the repository root:
+Install the command-line developer tools if needed, then install CMake. Homebrew is a convenient macOS route:
 
 ```sh
+xcode-select --install
+brew install cmake
+```
+
+Clone, build, test, and make a first query. These commands work from a new Terminal window; the `xcode-select` installer may require reopening it after installation.
+
+```sh
+git clone https://github.com/erencankur/mahler-project.git
+cd mahler-project
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 ctest --test-dir build --output-on-failure
+./build/mahler digit 2020
+# 7
+```
+
+Use `./build/mahler --help` to display the current command contract. Rebuild after a source change with `cmake --build build --parallel`; CMake regenerates its build files when necessary. For a clean rebuild, remove only the generated build directory:
+
+```sh
+rm -rf build
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
+```
+
+To install the executable outside the repository, choose a writable prefix:
+
+```sh
 cmake --install build --prefix /tmp/mahler-install
 /tmp/mahler-install/bin/mahler digit 2020
 ```
 
-## Usage
+## Commands and research workflow
+
+All positions start at 1 and exclude the initial `0.`. Each `<number>` and `<position>` is a positive decimal integer. The early-bird analysis range is deliberately capped at 1,000,000.
+
+| Command | What it does |
+| --- | --- |
+| `digit <position>` | Finds the digit at a sequence position without making the preceding sequence. |
+| `inspect <number>` | Finds the number's natural start. |
+| `early <number>` | Reports first start, early status, count of early starts, and advance. |
+| `scan --max N --output FILE` | Writes one summary record for every target `1..N`; optionally writes every early occurrence. |
+| `legacy-csv --max N --output-dir DIR` | Writes filtered all-early and prime-early lists, designed to replace the historical list format. |
+| `analyze --max N --output FILE` | Writes aggregate mathematical statistics as JSON. |
+| `plot-data --max N --output-dir DIR` | Writes compact aggregate CSV tables for plotting. |
+| `ulam --max N --layer NAME --output FILE` | Draws one Ulam layer as SVG, or PNG when graphics support is enabled. |
+| `benchmark --max N` | Measures the primary or independent reconstruction engine. |
 
 ```sh
+# Direct questions: plain text is easy to read; JSON is for programs.
 ./build/mahler digit 2020
 # 7
 
@@ -64,8 +101,14 @@ cmake --install build --prefix /tmp/mahler-install
 ./build/mahler early 9910 --format json
 # {"schema_version":1,"number":"9910","digit_count":4,"natural_position":"38530","first_position":"188","is_early":true,"early_frequency":4,"advance_digits":"38342"}
 
+# Complete target table and a separate table of early occurrences.
 ./build/mahler scan --max 1000000 --format csv --output results/summary-1000000.csv --occurrences results/occurrences-1000000.csv
 ./build/mahler scan --max 1000000 --format json --output results/summary-1000000.json
+
+# Historical-list-compatible outputs: all early birds and the prime subset.
+./build/mahler legacy-csv --max 1000000 --output-dir results/legacy-compatible
+
+# Aggregates and plotting source tables.
 ./build/mahler benchmark --max 1000000 --engine window --repeat 3
 ./build/mahler analyze --max 1000000 --output results/analysis-1000000.json
 ./build/mahler ulam --max 25 --layer combined --cell-size 16 --output results/ulam-25.svg
@@ -76,6 +119,29 @@ cmake --install build --prefix /tmp/mahler-install
 ```
 
 Positions start at 1 and exclude the initial `0.`. JSON serializes position and target/source integers as decimal strings to preserve precision in consumers such as JavaScript. Digits, offsets, widths, and schema versions are JSON numbers.
+
+### CSV and JSON files
+
+Write experimental output below `results/`; it is ignored by Git so full million-target files never enter a source commit. `scan` creates its manifest beside the summary unless `--manifest` supplies a different path. The manifest includes the range, machine/build context, record counts, timings, and FNV-1a-64 checksums.
+
+| Output | Rows at `--max 1000000` | Use |
+| --- | ---: | --- |
+| `summary-1000000.csv` | 1,000,000 | Full target-level table, including non-early numbers. |
+| `occurrences-1000000.csv` | 2,688,255 | Each early start, with source-number boundary information. |
+| `legacy-compatible/early-birds.csv` | 838,385 | All early targets, in target order. |
+| `legacy-compatible/prime-early-birds.csv` | 66,388 | Prime early targets, in target order. |
+| `analysis-1000000.json` | one JSON document | Frequency, prime, mechanism, and finite-block summaries. |
+| `plot-data/*.csv` | ten aggregate tables | Reproducible inputs for the statistical charts. |
+
+The two legacy-compatible CSV files use `number,digit_count,first_position,natural_position,early_frequency,advance_digits`. Every row is early; `early_frequency` counts distinct starts before the natural one, including overlaps. Their `manifest.json` checks both files. See the complete [CSV export guide](docs/LEGACY_CSV_EXPORTS.md), including a small example and field definitions.
+
+To verify a complete export independently, use the included standard-library script after creating the summary and occurrence files:
+
+```sh
+python3 scripts/verify_exports.py \
+  --summary results/summary-1000000.csv \
+  --occurrences results/occurrences-1000000.csv
+```
 
 ## Validation
 

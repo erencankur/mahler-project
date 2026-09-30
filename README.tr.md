@@ -28,25 +28,62 @@ C++ uygulaması doğrudan rakam sorgusu, erkencilik araması, yeniden üretilebi
 
 `inspect` yalnızca doğal konumu gösterir; erkencilik bilgileri için `early` kullanılır.
 
-## macOS üzerinde derleme
+## macOS üzerinde çalıştırma
 
 Gereksinimler: Xcode Command Line Tools veya Xcode, CMake 3.20 ve üzeri, C++20 derleyicisi. İlk desteklenen ortam macOS üzerinde Apple Clang'dir. Çekirdek hesaplama ve SVG spirali için Python, Gnuplot veya PNG kütüphanesi gerekmez. İsteğe bağlı PNG çıktısı libpng, istatistik çizimleri Gnuplot 6.x ve jq gerektirir.
 
-Geliştirici araçları yoksa `xcode-select --install` ile kurulabilir. CMake'i [resmî indirme sayfasından](https://cmake.org/download/) veya paket yöneticinden edinebilirsin.
-
-Depo kökünde çalıştır:
+Geliştirici araçlarını ve CMake'i kur. macOS'ta Homebrew pratik bir yoldur:
 
 ```sh
+xcode-select --install
+brew install cmake
+```
+
+Depoyu klonla, derle, test et ve ilk sorguyu çalıştır. `xcode-select` kurulumu bittiyse yeni bir Terminal penceresi açmak gerekebilir.
+
+```sh
+git clone https://github.com/erencankur/mahler-project.git
+cd mahler-project
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 ctest --test-dir build --output-on-failure
+./build/mahler digit 2020
+# 7
+```
+
+Geçerli komut sözleşmesi için `./build/mahler --help` çalıştır. Kaynak değişikliğinden sonra `cmake --build build --parallel` yeterlidir; CMake gerekirse kendi derleme dosyalarını yeniler. Temiz derleme için yalnız üretilen `build` dizinini sil:
+
+```sh
+rm -rf build
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
+```
+
+Uygulamayı depo dışına kurmak için yazılabilir bir önek seç:
+
+```sh
 cmake --install build --prefix /tmp/mahler-install
 /tmp/mahler-install/bin/mahler digit 2020
 ```
 
-## Kullanım
+## Komutlar ve araştırma akışı
+
+Tüm konumlar 1'den başlar ve baştaki `0.` sayılmaz. Her `<number>` ve `<position>` pozitif ondalık tam sayıdır. Erkencilik analizi bilinçli olarak 1.000.000 ile sınırlıdır.
+
+| Komut | İşlevi |
+| --- | --- |
+| `digit <position>` | Önceki diziyi üretmeden ilgili konumdaki rakamı bulur. |
+| `inspect <number>` | Sayının doğal başlangıcını bulur. |
+| `early <number>` | İlk başlangıcı, erkenciliği, erken başlangıç sayısını ve mesafeyi verir. |
+| `scan --max N --output FILE` | `1..N` içindeki her hedef için özet; isteğe bağlı olarak her erken görünüm kaydını yazar. |
+| `legacy-csv --max N --output-dir DIR` | Eski listelerin yerine tüm erkenci ve asal-erkenci filtreli listeleri yazar. |
+| `analyze --max N --output FILE` | Toplu matematik istatistiklerini JSON olarak yazar. |
+| `plot-data --max N --output-dir DIR` | Grafikler için derlenmiş CSV tablolarını yazar. |
+| `ulam --max N --layer NAME --output FILE` | Bir Ulam katmanını SVG olarak, grafik desteği varsa PNG olarak çizer. |
+| `benchmark --max N` | Birincil veya bağımsız yeniden kurma motorunu ölçer. |
 
 ```sh
+# Doğrudan sorgular: metin insan için, JSON programlar için uygundur.
 ./build/mahler digit 2020
 # 7
 
@@ -64,8 +101,14 @@ cmake --install build --prefix /tmp/mahler-install
 ./build/mahler early 9910 --format json
 # {"schema_version":1,"number":"9910","digit_count":4,"natural_position":"38530","first_position":"188","is_early":true,"early_frequency":4,"advance_digits":"38342"}
 
+# Tam hedef tablosu ve erken görünüm tablosu.
 ./build/mahler scan --max 1000000 --format csv --output results/summary-1000000.csv --occurrences results/occurrences-1000000.csv
 ./build/mahler scan --max 1000000 --format json --output results/summary-1000000.json
+
+# Eski listeye uyumlu çıktılar: tüm erkenciler ve asal alt kümesi.
+./build/mahler legacy-csv --max 1000000 --output-dir results/legacy-compatible
+
+# Özet analizler ve grafik kaynak tabloları.
 ./build/mahler benchmark --max 1000000 --engine window --repeat 3
 ./build/mahler analyze --max 1000000 --output results/analysis-1000000.json
 ./build/mahler ulam --max 25 --layer combined --cell-size 16 --output results/ulam-25.svg
@@ -76,6 +119,29 @@ cmake --install build --prefix /tmp/mahler-install
 ```
 
 Konumlar 1'den başlar; baştaki `0.` sayılmaz. JSON'da konumlar ve hedef/kaynak sayılar, JavaScript gibi tüketicilerde hassasiyet kaybını önlemek için ondalık metin olarak yazılır. Rakam, ofset, basamak sayısı ve şema sürümü JSON sayısıdır.
+
+### CSV ve JSON dosyaları
+
+Deney çıktıları için `results/` altında çalış; dizin Git tarafından yok sayılır, böylece milyon-hedeflik dosyalar kaynak commit'lerine girmez. `scan`, `--manifest` ile başka yol verilmezse özetin yanına manifest yazar. Manifest aralığı, makine/derleme bağlamını, kayıt adetlerini, süreleri ve FNV-1a-64 sağlama toplamlarını içerir.
+
+| Çıktı | `--max 1000000` satır adedi | Kullanım |
+| --- | ---: | --- |
+| `summary-1000000.csv` | 1.000.000 | Erkenci olmayanlar dahil hedef düzeyindeki tam tablo. |
+| `occurrences-1000000.csv` | 2.688.255 | Her erken başlangıç ve kaynak-sınır bilgisi. |
+| `legacy-compatible/early-birds.csv` | 838.385 | Hedef sırasıyla tüm erkenci sayılar. |
+| `legacy-compatible/prime-early-birds.csv` | 66.388 | Hedef sırasıyla asal erkenci sayılar. |
+| `analysis-1000000.json` | tek JSON belgesi | Frekans, asal, mekanizma ve sonlu blok özetleri. |
+| `plot-data/*.csv` | on derlenmiş tablo | İstatistik grafiklerinin yeniden üretilebilir girdileri. |
+
+İki eski-liste-uyumlu CSV şu sütunları kullanır: `number,digit_count,first_position,natural_position,early_frequency,advance_digits`. Her satır erkencidir; `early_frequency`, örtüşmeler dahil doğal konumdan önceki farklı başlangıçları sayar. `manifest.json` iki dosyayı da denetler. Küçük örnek ve alan tanımları için tam [CSV dışa aktarma rehberine](docs/LEGACY_CSV_EXPORTS.md) bak.
+
+Tam çıktıyı bağımsız denetlemek için özet ve görünüm dosyalarından sonra verilen standart kitaplık betiğini çalıştır:
+
+```sh
+python3 scripts/verify_exports.py \
+  --summary results/summary-1000000.csv \
+  --occurrences results/occurrences-1000000.csv
+```
 
 ## Doğrulama
 

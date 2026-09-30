@@ -72,6 +72,9 @@ mahler scan --max <number> --output <file> [--format csv|json]
             [--occurrences <csv-file>] [--manifest <json-file>]
 mahler benchmark --max <number> [--engine window|reconstruct] [--repeat <count>]
 mahler analyze --max <number> --output <json-file>
+mahler ulam --max <number> --layer <name> --output <svg|png-file> [--cell-size <1..16>]
+mahler plot-data --max <number> --output-dir <directory>
+mahler legacy-csv --max <number> --output-dir <directory>
 mahler --help
 mahler --version
 ```
@@ -95,6 +98,8 @@ Potentially large positions, targets, and advance distances are decimal strings 
 CSV uses UTF-8, English field names, decimal integers without locale separators, and `true`/`false` booleans. JSON preserves target numbers, positions, and advance distances as decimal strings; widths and frequencies are integers. The dataset schema version is independently declared as 1. Uncomputed special-number properties are absent. `--occurrences` optionally writes separate CSV records with `number`, `position`, `first_source`, `last_source`, and `first_source_digit_offset` in target/position order. It records only starts before the natural position. This output uses reconstruction and checks each target's count and first position against the window scan.
 
 The default manifest path is `<output>.manifest.json`; `--manifest` overrides it. Paths must be distinct. The manifest records range, indexing, version, compiler/build type, platform/model, engine choices, counts, phase timings, process peak resident memory, and FNV-1a 64 file checksums. FNV is a reproducibility checksum rather than a cryptographic signature. `benchmark` measures the core engine alone over 1–20 repeats; its result checksum makes comparisons meaningful. Output and checksum read times are excluded from `core_ms`.
+
+`legacy-csv` writes `early-birds.csv`, `prime-early-birds.csv`, and a checksum manifest under `--output-dir`. Both lists are sorted by target and use the columns `number`, `digit_count`, `first_position`, `natural_position`, `early_frequency`, and `advance_digits`; every row is early by construction. The prime list uses the same Eratosthenes sieve as analysis and graphics. Its name denotes compatibility with the two historical list categories: it does not read, modify, or reproduce files in the archive. See [the CSV export guide](../LEGACY_CSV_EXPORTS.md).
 
 `analyze` writes schema version 1 JSON for the same bounded range. It includes counts by target digit width, the complete early-frequency histogram per width, prime/composite/palindrome/emirp/Fibonacci denominators and early counts, extreme first-occurrence values, simple rotation-certificate coverage, occurrence mechanisms, and finite digit-block statistics for lengths 1–3. Primality comes from a Sieve of Eratosthenes; an emirp is a prime with a different reversed decimal prime. `crossed_boundaries` is `last_source-first_source`; `maximum_trailing_nines` is the largest carry length among crossed source increments. Block deviation is `delta_q=max_w |count(w)/(T-q+1)-10^-q|`, with all overlapping blocks including leading zeros. These are finite-prefix descriptions, not normality proofs.
 

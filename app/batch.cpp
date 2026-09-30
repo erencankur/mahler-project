@@ -2,6 +2,7 @@
 #include "cli_util.hpp"
 #include "mahler/early.hpp"
 #include "mahler/sequence.hpp"
+#include "mahler/ulam.hpp"
 
 #include <algorithm>
 #include <array>
@@ -232,6 +233,26 @@ std::uint64_t write_occurrences(std::ostream& out, std::uint64_t maximum,
     return count;
 }
 
+std::uint64_t write_legacy_rows(std::ostream& out, std::uint64_t maximum,
+                                const std::vector<mahler::EarlyResult>& results,
+                                const std::vector<bool>* primes) {
+    // The historical PDFs are target lists annotated with frequency.  This
+    // normalized form keeps that information and adds positions for auditing.
+    out << "number,digit_count,first_position,natural_position,early_frequency,advance_digits\n";
+    std::uint64_t count = 0;
+    for (std::uint64_t number = 1; number <= maximum; ++number) {
+        const auto& record = results[static_cast<std::size_t>(number)];
+        if (!record.is_early() || (primes && !(*primes)[static_cast<std::size_t>(number)])) {
+            continue;
+        }
+        out << number << ',' << mahler::decimal_digits(number) << ','
+            << record.first_position << ',' << record.natural_position << ','
+            << record.early_frequency << ',' << record.advance_digits() << '\n';
+        ++count;
+    }
+    return count;
+}
+
 void write_file_entry(std::ostream& out, const FileInfo& file) {
     out << "{\"path\":" << json_quote(file.path.string())
         << ",\"bytes\":" << file.bytes
@@ -383,6 +404,65 @@ void run_scan_command(int argc, char** argv) {
     if (occurrences) {
         std::cout << "occurrences: " << occurrences->string() << '\n';
     }
+}
+
+void run_legacy_csv_command(int argc, char** argv) {
+    std::optional<std::uint64_t> maximum;
+    std::optional<fs::path> output_dir;
+    if (argc != 6) {
+        throw std::invalid_argument("legacy-csv requires --max and --output-dir");
+    }
+    for (int i = 2; i < argc; i += 2) {
+        const std::string_view option = argv[i];
+        const std::string value = argv[i + 1];
+        if (option == "--max" && !maximum) {
+            maximum = parse_positive(value);
+            validate_maximum(*maximum);
+        } else if (option == "--output-dir" && !output_dir && !value.empty()) {
+            output_dir = value;
+        } else {
+            throw std::invalid_argument("unknown, duplicate, or invalid legacy-csv option");
+        }
+    }
+    if (!maximum || !output_dir) {
+        throw std::invalid_argument("legacy-csv requires --max and --output-dir");
+    }
+
+    const auto all_path = *output_dir / "early-birds.csv";
+    const auto prime_path = *output_dir / "prime-early-birds.csv";
+    const auto manifest_path = *output_dir / "manifest.json";
+    const auto results = mahler::scan_early(*maximum);
+    const auto primes = mahler::prime_flags(*maximum);
+    std::uint64_t all_count = 0;
+    std::uint64_t prime_count = 0;
+    write_atomic(all_path, [&](std::ostream& stream) {
+        all_count = write_legacy_rows(stream, *maximum, results, nullptr);
+    });
+    write_atomic(prime_path, [&](std::ostream& stream) {
+        prime_count = write_legacy_rows(stream, *maximum, results, &primes);
+    });
+    const auto all_info = inspect_file(all_path, all_count);
+    const auto prime_info = inspect_file(prime_path, prime_count);
+    write_atomic(manifest_path, [&](std::ostream& stream) {
+        stream << "{\n  \"schema_version\":1,\n"
+               << "  \"kind\":\"legacy-compatible-early-bird-lists\",\n"
+               << "  \"source\":\"concatenated decimal integers 1..maximum\",\n"
+               << "  \"base\":10,\n"
+               << "  \"positions\":\"one-based, initial 0. excluded\",\n"
+               << "  \"maximum\":\"" << *maximum << "\",\n"
+               << "  \"csv_schema\":[\"number\",\"digit_count\",\"first_position\",\"natural_position\",\"early_frequency\",\"advance_digits\"],\n"
+               << "  \"checksum_algorithm\":\"fnv1a64\",\n"
+               << "  \"early_birds\":";
+        write_file_entry(stream, all_info);
+        stream << ",\n  \"prime_early_birds\":";
+        write_file_entry(stream, prime_info);
+        stream << "\n}\n";
+    });
+    std::cout << "early_birds: " << all_path.string() << '\n'
+              << "prime_early_birds: " << prime_path.string() << '\n'
+              << "manifest: " << manifest_path.string() << '\n'
+              << "early_targets: " << all_count << '\n'
+              << "prime_early_targets: " << prime_count << '\n';
 }
 
 void run_benchmark_command(int argc, char** argv) {

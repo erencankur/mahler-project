@@ -23,6 +23,7 @@ constexpr std::string_view usage =
     "  mahler analyze --max <number> --output <json-file>\n"
     "  mahler ulam --max <number> --layer <name> --output <svg|png-file> [--cell-size <1..16>]\n"
     "  mahler plot-data --max <number> --output-dir <directory>\n"
+    "  mahler legacy-csv --max <number> --output-dir <directory>\n"
     "  mahler --help\n"
     "  mahler --version\n\n"
     "Positions start at 1; the initial 0. is excluded.\n"
@@ -46,6 +47,8 @@ int main(int argc, char** argv) {
             run_ulam_command(argc, argv);
         } else if (argc >= 2 && std::string_view(argv[1]) == "plot-data") {
             run_plot_data_command(argc, argv);
+        } else if (argc >= 2 && std::string_view(argv[1]) == "legacy-csv") {
+            run_legacy_csv_command(argc, argv);
         } else {
             if (argc != 3 && argc != 5) {
                 throw std::invalid_argument("invalid arguments; use mahler --help");

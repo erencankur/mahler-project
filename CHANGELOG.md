@@ -2,6 +2,15 @@
 
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added / Eklendi
+
+- `legacy-csv` command for reproducible all-early and prime-early CSV lists,
+  with an auditable manifest.
+- Complete macOS build, command, export, validation, and graphics instructions
+  in both READMEs, plus a CSV field guide.
+
 ## 0.1.0 — 2026-09-30
 
 ### Added / Eklendi
