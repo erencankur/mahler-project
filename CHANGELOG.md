@@ -2,7 +2,7 @@
 
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.1.0 — release candidate / sürüm adayı
+## 0.1.0 — 2026-09-30
 
 ### Added / Eklendi
 
@@ -22,6 +22,6 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) an
 
 ### Release note / Sürüm notu
 
-**EN:** This is a release candidate until the repository owner selects a license and creates an annotated Git tag and GitHub Release. No license is implied by this changelog.
+**EN:** This initial public release is available under the [MIT License](LICENSE).
 
-**TR:** Depo sahibi lisans seçip imzalı bir Git etiketi ve GitHub Release oluşturana kadar bu bir sürüm adayıdır. Bu sürüm notu lisans verdiği anlamına gelmez.
+**TR:** Bu ilk public sürüm [MIT Lisansı](LICENSE) ile sunulur.

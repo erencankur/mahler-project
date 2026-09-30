@@ -128,4 +128,4 @@ Eski matematik çalışması kardeş `../legacy-math-folders/` dizininde korunur
 
 ## Sürüm ve lisans durumu
 
-Bu depo public olsa da `v0.1.0`, lisansı, imzalı etiketi ve GitHub Release’i oluşturulana kadar sürüm adayıdır. Şu anda açık kaynak yeniden kullanım lisansı verilmiş değildir. Kalan yayın kararı [yayın kontrol listesinde](docs/RELEASE_CHECKLIST.md) kayıtlıdır.
+Mahler Project `v0.1.0`, [MIT Lisansı](LICENSE) ile yayınlanır. Etiketli GitHub Release, temiz derleme kanıtı ve dahil edilen kaynak/grafik dosyaları [yayın kontrol listesinde](docs/RELEASE_CHECKLIST.md) ve [sürüm notlarında](docs/RELEASE_NOTES_v0.1.0.md) açıklanır.

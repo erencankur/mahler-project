@@ -1,8 +1,8 @@
 # Contributing / Katkı
 
-**EN:** Thank you for considering a contribution. This is a mathematical research project, so a change must preserve both the software contract and the meaning of its reported results. By opening a pull request, you confirm that you have the right to submit the contribution. Until the project owner selects a license, contributions are reviewed but no open-source reuse terms are granted.
+**EN:** Thank you for considering a contribution. This is a mathematical research project, so a change must preserve both the software contract and the meaning of its reported results. By opening a pull request, you confirm that you have the right to submit the contribution. Contributions and the project are available under the [MIT License](LICENSE).
 
-**TR:** Katkı düşünmeniz için teşekkürler. Bu bir matematik araştırma projesidir; değişiklik hem yazılım sözleşmesini hem de raporlanan sonuçların anlamını korumalıdır. Pull request açarak katkıyı göndermeye hakkınız olduğunu onaylarsınız. Proje sahibi lisans seçene kadar katkılar incelenir, ancak açık kaynak yeniden kullanım izni verilmez.
+**TR:** Katkı düşünmeniz için teşekkürler. Bu bir matematik araştırma projesidir; değişiklik hem yazılım sözleşmesini hem de raporlanan sonuçların anlamını korumalıdır. Pull request açarak katkıyı göndermeye hakkınız olduğunu onaylarsınız. Katkılar ve proje [MIT Lisansı](LICENSE) ile sunulur.
 
 ## Before opening a pull request / Pull request öncesi
 

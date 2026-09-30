@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use Mahler Project in academic work, please cite it."
+title: "Mahler Project"
+version: "0.1.0"
+date-released: 2026-09-30
+url: "https://github.com/erencankur/mahler-project"
+license: MIT
+authors:
+  - family-names: Kur
+    given-names: Eren Can

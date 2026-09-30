@@ -128,4 +128,4 @@ The previous mathematical study is retained in the sibling `../legacy-math-folde
 
 ## Release status and licensing
 
-This repository is public, but `v0.1.0` remains a release candidate until its license, annotated tag, and GitHub Release are created. No open-source reuse license has been granted yet. The remaining release decision is documented in the [release checklist](docs/RELEASE_CHECKLIST.md).
+Mahler Project `v0.1.0` is released under the [MIT License](LICENSE). The tagged GitHub Release, clean-build evidence, and included source/figure assets are documented in the [release checklist](docs/RELEASE_CHECKLIST.md) and [release notes](docs/RELEASE_NOTES_v0.1.0.md).

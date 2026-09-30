@@ -1,13 +1,13 @@
 # Mahler Project Roadmap / Mahler Projesi Yol Haritası
 
 Date / Tarih: 2026-09-30  
-Status / Durum: Phases 0–5 complete; Phase 6 next / Faz 0–5 tamamlandı; sıradaki çalışma Faz 6
+Status / Durum: Phases 0–6 complete; v0.1.0 released / Faz 0–6 tamamlandı; v0.1.0 yayınlandı
 
 ## Phase overview / Faz özeti
 
-**TR:** Proje yedi fazda ilerleyecek. Aşağıdaki Faz 0–6, ayrıntılardaki M0–M6 ile aynıdır. Literatür araştırması ve grafik araçlarının seçimi tamamlandı; Faz 0–5 uygulandı ve doğrulandı. Her fazın tamamlanması, aşağıdaki çıktılar ve Bölüm 6'daki kabul ölçütleriyle değerlendirilecek.
+**TR:** Proje yedi fazda ilerledi. Aşağıdaki Faz 0–6, ayrıntılardaki M0–M6 ile aynıdır. Literatür araştırması ve grafik araçlarının seçimi tamamlandı; bütün fazlar uygulandı, doğrulandı ve v0.1.0 yayınlandı. Her fazın tamamlanması, aşağıdaki çıktılar ve Bölüm 6'daki kabul ölçütleriyle değerlendirildi.
 
-**EN:** The project proceeds through seven phases. Phases 0–6 below correspond to M0–M6 in the detailed plan. Literature research and graphics-tool selection are complete; Phases 0–5 are implemented and verified. Completion is determined by the deliverables below and the acceptance criteria in Section 6.
+**EN:** The project proceeded through seven phases. Phases 0–6 below correspond to M0–M6 in the detailed plan. Literature research and graphics-tool selection are complete; every phase was implemented and verified, and v0.1.0 was released. Completion was determined by the deliverables below and the acceptance criteria in Section 6.
 
 | Phase / Faz | Work / Çalışma | Deliverable / Çıktı |
 | --- | --- | --- |
@@ -25,9 +25,9 @@ Status / Durum: Phases 0–5 complete; Phase 6 next / Faz 0–5 tamamlandı; sı
 
 ### Implementation approval and current scope / Uygulama onayı ve mevcut kapsam
 
-**TR:** Kullanıcı 2026-09-30 tarihinde “Başla” diyerek uygulamayı başlattı; sonraki “Devam et” istekleriyle Faz 2–5 tamamlandı. Sıradaki çalışma Faz 6 yayın hazırlığıdır. Bütün proje değişiklikleri `mahler-project/` içinde yapılır. Kullanıcı her fazdan sonra commit ve push yapılmasını onayladı; public sürüm ve lisans ayrıca kesinleştirilecek.
+**TR:** Kullanıcı 2026-09-30 tarihinde “Başla” diyerek uygulamayı başlattı; sonraki “Devam et” istekleriyle Faz 2–6 tamamlandı. Bütün proje değişiklikleri `mahler-project/` içinde yapıldı. Kullanıcı MIT lisansını seçme, public sürümü ve `v0.1.0` GitHub Release'i oluşturma yetkisini verdi.
 
-**EN:** The user started implementation with “Başla” on 2026-09-30 and continued through Phases 2–5 with subsequent “Devam et” requests. Phase 6 prepares the release. All project changes stay in `mahler-project/`. The user authorized commits and pushes after every phase; public release and licensing will be settled separately.
+**EN:** The user started implementation with “Başla” on 2026-09-30 and continued through Phases 2–6 with subsequent “Devam et” requests. All project changes stayed in `mahler-project/`. The user authorized MIT licensing, the public release, and the `v0.1.0` GitHub Release.
 
 ## 1. Purpose / Amaç
 
@@ -231,8 +231,8 @@ mahler-project/
 - [x] **TR:** Tanımlar, algoritmalar, doğrulama, bulgular ve sınırlamalar için iki dilde belgeler yazmak. **EN:** Write bilingual documentation for definitions, algorithms, validation, findings, and limitations.
 - [x] **TR:** Temiz macOS kurulumundan derleme, test ve örnek analiz akışını doğrulamak. **EN:** Verify build, tests, and an example analysis from a clean macOS setup.
 - [x] **TR:** macOS derleme ve test iş akışı eklemek. **EN:** Add a macOS build-and-test workflow.
-- [ ] **TR:** Kaynaklar, lisans, katkı yönergeleri ve sürüm notlarını tamamlamak. **EN:** Complete references, licensing, contribution guidance, and release notes. Lisans seçimi proje sahibini bekliyor / License selection awaits the project owner.
-- [ ] **TR:** Public yayın öncesinde depoya girecek dosyaları kontrol etmek ve yayın adımını kullanıcıyla kesinleştirmek. **EN:** Review release contents and confirm the publication step with the user. Depo public; sürüm etiketi ve Release lisans sonrası / Repository is public; tag and Release follow licensing.
+- [x] **TR:** Kaynaklar, lisans, katkı yönergeleri ve sürüm notlarını tamamlamak. **EN:** Complete references, licensing, contribution guidance, and release notes.
+- [x] **TR:** Public yayın öncesinde depoya girecek dosyaları kontrol etmek ve yayın adımını kullanıcıyla kesinleştirmek. **EN:** Review release contents and confirm the publication step with the user.
 
 **Acceptance / Kabul:** TR — `v0.1.0` başka bir kullanıcı tarafından belgelenmiş komutlarla derlenebilmeli, çalıştırılabilmeli ve seçilmiş sonuçları yeniden üretebilmeli. EN — Another user can build and run `v0.1.0` and reproduce selected results using the documented commands.
 
@@ -327,7 +327,7 @@ is_fibonacci
 | Runtime target / Süre hedefi | Baseline measured in Phase 3; broader hardware sample needed for a release threshold / İlk ölçüm Faz 3'te yapıldı; sürüm eşiği için daha geniş cihaz örnekleri gerekir |
 | Schedule / Takvim | Estimate after M1–M2; milestones determine order / M1–M2 sonrası tahmin et; sıra aşamalara göre |
 
-**Next step / Sonraki adım:** TR — Faz 6'yı tamamlamak için lisans tercihini kaydedip v0.1.0 etiketini ve GitHub Release'i oluşturmak. EN — To complete Phase 6, record the license choice and create the v0.1.0 tag and GitHub Release.
+**Next step / Sonraki adım:** TR — v0.1.1 için daha geniş kapsam, başka tabanlar veya yeni istatistiksel hipotezler planlanabilir. EN — v0.1.1 can plan wider ranges, other bases, or new statistical hypotheses.
 
 ## 11. Literature review / Literatür araştırması
 
@@ -534,11 +534,11 @@ Research date / Araştırma tarihi: 2026-09-30.
 - [x] **TR:** Faz 3 tamamlandı: veri seti, manifest ve performans ölçümleri. **EN:** Phase 3 complete: dataset, manifest, and performance measurements.
 - [x] **TR:** Faz 4 tamamlandı: matematiksel analiz, alt kümeler ve mekanizma özetleri. **EN:** Phase 4 complete: mathematical analysis, subsets, and mechanism summaries.
 - [x] **TR:** Faz 5 tamamlandı: grafikler ve Ulam spirali. **EN:** Phase 5 complete: figures and Ulam spiral.
-- [ ] **TR:** Faz 6 sürüm adayı hazır; lisans tercihi, etiket ve GitHub Release bekliyor. **EN:** Phase 6 release candidate is ready; license choice, tag, and GitHub Release remain.
+- [x] **TR:** Faz 6 tamamlandı: MIT lisanslı public v0.1.0, etiket ve GitHub Release. **EN:** Phase 6 complete: MIT-licensed public v0.1.0, tag, and GitHub Release.
 
-**TR:** Temel sorgular, erkencilik motorları ve toplu veri seti tamamlandı; matematiksel analiz ve araştırma grafikleri sonraki fazlardadır.
+**TR:** Temel sorgular, erkencilik motorları, toplu veri seti, matematiksel analiz, araştırma grafikleri ve public yayın tamamlandı.
 
-**EN:** Foundational queries, early-bird engines, and the batch dataset are complete; mathematical analysis and research figures are next.
+**EN:** Foundational queries, early-bird engines, the batch dataset, mathematical analysis, research figures, and the public release are complete.
 
 ## 15. Phase 0–1 delivery / Faz 0–1 teslimi
 

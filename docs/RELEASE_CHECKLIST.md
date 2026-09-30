@@ -1,6 +1,6 @@
 # v0.1.0 release checklist / v0.1.0 yayın kontrol listesi
 
-Date / Tarih: 2026-09-30. This checklist records a release candidate, not a release / Bu liste sürüm adayını kaydeder, yayınlanmış sürümü değil.
+Date / Tarih: 2026-09-30. `v0.1.0` is the initial public release / `v0.1.0` ilk public sürümdür.
 
 | Item / Madde | Status / Durum | Evidence / Kanıt |
 |---|---|---|
@@ -9,8 +9,8 @@ Date / Tarih: 2026-09-30. This checklist records a release candidate, not a rele
 | Bilingual README and mathematical documentation / İki dilli README ve matematik belgeleri | Complete / Tamam | [README](../README.md), [Türkçe](../README.tr.md), [specifications](en/SPECIFICATION.md) |
 | Reproducible selected figures and checksums / Yeniden üretilebilir seçilmiş grafikler ve sağlama toplamları | Complete / Tamam | [figure catalog](../figures/README.md) |
 | Contribution guidance and release notes / Katkı rehberi ve sürüm notları | Complete / Tamam | [CONTRIBUTING](../CONTRIBUTING.md), [CHANGELOG](../CHANGELOG.md) |
-| License text and copyright holder / Lisans metni ve telif sahibi | **Owner decision required / Sahip kararı gerekli** | No license has been selected / Lisans seçilmedi |
-| Annotated tag and GitHub Release / İmzalı etiket ve GitHub Release | Pending license / Lisans bekleniyor | Create after the license decision / Lisans sonrası oluştur |
+| License text and copyright holder / Lisans metni ve telif sahibi | Complete / Tamam | [MIT License](../LICENSE), © 2026 Eren Can Kur |
+| Annotated tag and GitHub Release / İmzalı etiket ve GitHub Release | Complete / Tamam | `v0.1.0` and linked release notes / etiket ve bağlı sürüm notları |
 
 ## Clean macOS reproduction / Temiz macOS yeniden üretim
 
@@ -47,12 +47,12 @@ MAHLER=/tmp/mahler-graphics/mahler bash scripts/render_figures.sh
 
 ## License decision / Lisans kararı
 
-**EN:** For a research CLI intended to invite broad reuse, MIT is the short permissive option. Apache-2.0 is also permissive and includes an express patent grant. GPL-3.0-or-later requires distributed derivatives to remain under the same license. Choose one only after deciding the intended reuse policy and confirming the copyright holder name. These are policy summaries, not legal advice. See [Choose a License](https://choosealicense.com/) for the official comparison.
+**EN:** MIT was selected as the short permissive license for broad reuse of this research CLI. It requires preservation of the copyright and license notice, while disclaiming warranty and liability. See the [MIT license overview](https://choosealicense.com/licenses/mit/) for a policy summary.
 
-**TR:** Geniş yeniden kullanıma açık bir araştırma CLI’si için MIT kısa ve izin verici seçenektir. Apache-2.0 da izin vericidir ve açık patent lisansı içerir. GPL-3.0-or-later dağıtılan türevlerin aynı lisansla kalmasını ister. Hedeflenen yeniden kullanım politikasına ve telif sahibinin adına karar verdikten sonra seçin. Bunlar hukukî tavsiye değil, politika özetleridir. Karşılaştırma için [Choose a License](https://choosealicense.com/) kaynağına bakın.
+**TR:** Bu araştırma CLI’sinin geniş yeniden kullanımı için kısa ve izin verici MIT lisansı seçildi. Telif ve lisans bildiriminin korunmasını ister; garanti ve sorumluluğu reddeder. Politika özeti için [MIT lisans açıklamasına](https://choosealicense.com/licenses/mit/) bakın.
 
 ## Repository contents review / Depo içeriği incelemesi
 
-**EN:** Commit source, tests, documentation, compact figures/data, and workflows. Keep builds, `results/`, local tools, the sibling legacy archive, and unreviewed bulk release assets out of Git. The full one-million summaries and full figure set are intentionally regenerated, or attached to a GitHub Release after the license decision.
+**EN:** The tagged release contains source, tests, documentation, compact figures/data, and workflows. Builds, `results/`, local tools, the sibling legacy archive, and unreviewed bulk release assets remain outside Git. Full one-million summaries and the complete figure set are intentionally regenerated from documented commands.
 
-**TR:** Kaynak kodu, testler, belgeler, küçük görseller/veriler ve iş akışları commit edilir. Derlemeler, `results/`, yerel araçlar, kardeş eski arşiv ve gözden geçirilmemiş büyük sürüm dosyaları Git dışında tutulur. Tam bir milyonluk özetler ve tam görsel seti bilinçli olarak yeniden üretilir veya lisans kararından sonra GitHub Release’e eklenir.
+**TR:** Etiketli sürüm kaynak kodu, testler, belgeler, küçük görseller/veriler ve iş akışlarını içerir. Derlemeler, `results/`, yerel araçlar, kardeş eski arşiv ve gözden geçirilmemiş büyük sürüm dosyaları Git dışında kalır. Tam bir milyonluk özetler ve tam görsel seti bilinçli olarak belgelenen komutlarla yeniden üretilir.
