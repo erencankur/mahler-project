@@ -1,0 +1,7 @@
+engine,maximum,median_ms,peak_rss_mib
+"window","10000",0.293,1.6875
+"window","100000",3.502,4.1875
+"window","1000000",61.227,29.953125
+"reconstruct","10000",1.569,1.65625
+"reconstruct","100000",22.349,3.765625
+"reconstruct","1000000",303.873,24.359375

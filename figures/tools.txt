@@ -1,0 +1,4 @@
+gnuplot 6.0 patchlevel 3
+mahler 0.1.0-dev
+Font: Arial; SVG 1200x800; PNG 2400x1600; PDF 12x8 inches
+Darwin arm64

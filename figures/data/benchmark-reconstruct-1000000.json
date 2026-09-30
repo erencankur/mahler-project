@@ -1,0 +1,1 @@
+{"schema_version":1,"maximum":"1000000","engine":"reconstruct","engine_status":"experimental","repeat":3,"core_ms":[304.130,300.284,303.873],"median_core_ms":303.873,"peak_rss_bytes":25542656,"result_fnv1a64":"a7c432d63c4d6aa8"}

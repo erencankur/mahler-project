@@ -8,7 +8,7 @@ Ondalık Champernowne sabiti, diğer adıyla Mahler sayısı, üzerine C++20 ile
 0.123456789101112131415...
 ```
 
-C++ uygulaması doğrudan rakam sorgusu, erkencilik araması ve 1–1.000.000 aralığındaki hedefler için yeniden üretilebilir CSV/JSON çıktıları sunar. Asal sayı analizleri ve Ulam spirali grafikleri sonraki fazlardadır.
+C++ uygulaması doğrudan rakam sorgusu, erkencilik araması, yeniden üretilebilir CSV/JSON çıktıları, matematiksel analizler ve 1–1.000.000 aralığı için Ulam grafikleri sunar.
 
 ## Mevcut özellikler
 
@@ -23,11 +23,14 @@ C++ uygulaması doğrudan rakam sorgusu, erkencilik araması ve 1–1.000.000 ar
 - Dosya yazımını çekirdek ölçümden ayırarak iki motorun süresini ölçme.
 - Frekansları, özel sayı kümelerini, kaynak sınırı mekanizmalarını, döndürme tanıklarını ve sonlu rakam bloklarını analiz etme.
 
-Toplu matematiksel analiz ve grafikler **henüz uygulanmadı**. `inspect` yalnızca doğal konumu gösterir; erkencilik bilgileri için `early` kullanılır.
+- Yedi Ulam katmanını küçük SVG veya isteğe bağlı libpng PNG olarak üretme.
+- Gnuplot ile iki dilde SVG/PNG/PDF istatistik grafikleri oluşturma.
+
+`inspect` yalnızca doğal konumu gösterir; erkencilik bilgileri için `early` kullanılır.
 
 ## macOS üzerinde derleme
 
-Gereksinimler: Xcode Command Line Tools veya Xcode, CMake 3.20 ve üzeri, C++20 derleyicisi. İlk desteklenen ortam macOS üzerinde Apple Clang'dir. Bu fazda Python, Gnuplot veya PNG kütüphanesi gerekmez.
+Gereksinimler: Xcode Command Line Tools veya Xcode, CMake 3.20 ve üzeri, C++20 derleyicisi. İlk desteklenen ortam macOS üzerinde Apple Clang'dir. Çekirdek hesaplama ve SVG spirali için Python, Gnuplot veya PNG kütüphanesi gerekmez. İsteğe bağlı PNG çıktısı libpng, istatistik çizimleri Gnuplot 6.x ve jq gerektirir.
 
 Geliştirici araçları yoksa `xcode-select --install` ile kurulabilir. CMake'i [resmî indirme sayfasından](https://cmake.org/download/) veya paket yöneticinden edinebilirsin.
 
@@ -63,6 +66,8 @@ ctest --test-dir build --output-on-failure
 ./build/mahler scan --max 1000000 --format json --output results/summary-1000000.json
 ./build/mahler benchmark --max 1000000 --engine window --repeat 3
 ./build/mahler analyze --max 1000000 --output results/analysis-1000000.json
+./build/mahler ulam --max 25 --layer combined --cell-size 16 --output results/ulam-25.svg
+./build/mahler plot-data --max 1000000 --output-dir results/plot-data
 
 ./build/mahler --help
 ./build/mahler --version
@@ -74,7 +79,25 @@ Konumlar 1'den başlar; baştaki `0.` sayılmaz. JSON'da konumlar ve hedef/kayna
 
 Çekirdek kontrolleri 10.000'e kadar bağımsız oluşturulmuş öneği, büyük konumları ve taşmaları kapsar. Erkencilik kontrolleri 9.999'a kadar bütün erken konumları doğrudan metin aramasıyla, bir milyona kadar her hedefin ilk konumunu ve frekansını iki C++ motoruyla karşılaştırır; seçili elde örnekleri ayrıca bağımsız aranır. Bir milyonluk taramada **838.385** erkenci sayı ve **2.688.255** erken konum bulundu. Toplu çıktı testleri şemaları, tekrarları ve hatalı seçenekleri sınar. İsteğe bağlı [çıktı doğrulayıcısı](scripts/verify_exports.py) tam CSV/JSON dosyalarını ve her konumu dizi metnine karşı denetler. Sonuçlar ve ölçümler [Faz 3 raporunda](docs/PHASE3_REPORT.md).
 
-[Faz 4 analizi](docs/PHASE4_REPORT.md), bir milyonluk aralıktaki frekansları, asal ve özel sayı kümelerinin paydalarını, sınır mekanizmalarını ve sonlu blok istatistiklerini açıklar.
+[Faz 4 analizi](docs/PHASE4_REPORT.md), frekansları, asal ve özel sayı kümelerinin paydalarını, sınır mekanizmalarını ve sonlu blok istatistiklerini açıklar. [Faz 5](docs/PHASE5_REPORT.md), bir milyon koordinatın denetimini, PNG piksel kontrollerini, özet doğrulamasını ve grafikleri ekler.
+
+## Grafikler
+
+![Basamağa göre erkenci oranları](figures/charts/early-by-digits-tr.svg)
+
+![Bir milyon hedefin birleşik Ulam spirali](figures/charts/ulam-combined-1000000.png)
+
+Mavi: yalnız erkenci; turuncu: yalnız asal; yeşil: ikisi birden; açık gri: hiçbiri; koyu gri: 1–1.000.000 dışında. Spiral merkezde 1 ile başlar, sağa ve sonra yukarı ilerler. **66.388** sayı hem asal hem erkencidir. Ölçekler, kaynak tabloları ve yedi katman için [grafik kataloğuna](figures/README.md) bakabilirsin.
+
+```sh
+# İsteğe bağlı tam grafik derlemesi ve yeniden üretim
+brew install libpng gnuplot jq
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DMAHLER_ENABLE_GRAPHICS=ON
+cmake --build build --parallel
+bash scripts/render_figures.sh
+```
+
+Tam çıktılar Git dışında `results/figures/` altında, seçilmiş görseller ve küçük kaynak tabloları depoda tutulur. Üretim için Python gerekmez.
 
 Apple Clang ile ek bellek ve aritmetik kontrolleri:
 

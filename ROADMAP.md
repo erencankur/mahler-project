@@ -1,13 +1,13 @@
 # Mahler Project Roadmap / Mahler Projesi Yol Haritası
 
 Date / Tarih: 2026-09-30  
-Status / Durum: Phases 0–4 complete; Phase 5 next / Faz 0–4 tamamlandı; sıradaki çalışma Faz 5
+Status / Durum: Phases 0–5 complete; Phase 6 next / Faz 0–5 tamamlandı; sıradaki çalışma Faz 6
 
 ## Phase overview / Faz özeti
 
-**TR:** Proje yedi fazda ilerleyecek. Aşağıdaki Faz 0–6, ayrıntılardaki M0–M6 ile aynıdır. Literatür araştırması ve grafik araçlarının seçimi tamamlandı; Faz 0–4 uygulandı ve doğrulandı. Her fazın tamamlanması, aşağıdaki çıktılar ve Bölüm 6'daki kabul ölçütleriyle değerlendirilecek.
+**TR:** Proje yedi fazda ilerleyecek. Aşağıdaki Faz 0–6, ayrıntılardaki M0–M6 ile aynıdır. Literatür araştırması ve grafik araçlarının seçimi tamamlandı; Faz 0–5 uygulandı ve doğrulandı. Her fazın tamamlanması, aşağıdaki çıktılar ve Bölüm 6'daki kabul ölçütleriyle değerlendirilecek.
 
-**EN:** The project proceeds through seven phases. Phases 0–6 below correspond to M0–M6 in the detailed plan. Literature research and graphics-tool selection are complete; Phases 0–4 are implemented and verified. Completion is determined by the deliverables below and the acceptance criteria in Section 6.
+**EN:** The project proceeds through seven phases. Phases 0–6 below correspond to M0–M6 in the detailed plan. Literature research and graphics-tool selection are complete; Phases 0–5 are implemented and verified. Completion is determined by the deliverables below and the acceptance criteria in Section 6.
 
 | Phase / Faz | Work / Çalışma | Deliverable / Çıktı |
 | --- | --- | --- |
@@ -25,9 +25,9 @@ Status / Durum: Phases 0–4 complete; Phase 5 next / Faz 0–4 tamamlandı; sı
 
 ### Implementation approval and current scope / Uygulama onayı ve mevcut kapsam
 
-**TR:** Kullanıcı 2026-09-30 tarihinde “Başla” diyerek uygulamayı başlattı; sonraki “Devam et” istekleriyle Faz 2–4 tamamlandı. Sıradaki çalışma Faz 5'te grafik ve Ulam spiralidir. Bütün proje değişiklikleri `mahler-project/` içinde yapılır; GitHub yayını ayrıca kullanıcıyla kesinleştirilecek.
+**TR:** Kullanıcı 2026-09-30 tarihinde “Başla” diyerek uygulamayı başlattı; sonraki “Devam et” istekleriyle Faz 2–5 tamamlandı. Sıradaki çalışma Faz 6 yayın hazırlığıdır. Bütün proje değişiklikleri `mahler-project/` içinde yapılır. Kullanıcı her fazdan sonra commit ve push yapılmasını onayladı; public sürüm ve lisans ayrıca kesinleştirilecek.
 
-**EN:** The user started implementation with “Başla” on 2026-09-30 and continued through Phases 2–4 with subsequent “Devam et” requests. Phase 5 adds figures and Ulam spirals. All project changes stay in `mahler-project/`; GitHub publication will be confirmed separately.
+**EN:** The user started implementation with “Başla” on 2026-09-30 and continued through Phases 2–5 with subsequent “Devam et” requests. Phase 6 prepares the release. All project changes stay in `mahler-project/`. The user authorized commits and pushes after every phase; public release and licensing will be settled separately.
 
 ## 1. Purpose / Amaç
 
@@ -217,11 +217,11 @@ mahler-project/
 
 ### M5 — Ulam spiral and graphics / Ulam spirali ve grafikler
 
-- [ ] **TR:** Merkezde 1, sağa ilk adım, ardından saat yönünün tersine kare spiral sözleşmesini belgelemek. **EN:** Document a square spiral with 1 at the origin, the first step to the right, then counterclockwise growth.
-- [ ] **TR:** Erkenci, asal ve hem asal hem erkenci sayı görünümleri üretmek. **EN:** Render early birds, primes, and their intersection.
-- [ ] **TR:** SVG çıktıları, renk açıklamaları, aralıklar ve kaynak veri bağlantıları eklemek. **EN:** Provide SVG exports, legends, ranges, and source-data links.
-- [ ] **TR:** Büyük spiral için libpng ile PNG, küçük spiral için SVG üretmek; Gnuplot ile istatistik grafiklerini çizmek. **EN:** Use libpng PNG for large spirals, SVG for small spirals, and Gnuplot for statistical charts.
-- [ ] **TR:** Görsel çizgileri basamak grupları, halkalar ve gerekiyorsa köşegen ölçümleriyle değerlendirmek. **EN:** Investigate visual structures with digit groups, rings, and diagonal measurements where useful.
+- [x] **TR:** Merkezde 1, sağa ilk adım, ardından saat yönünün tersine kare spiral sözleşmesini belgelemek. **EN:** Document a square spiral with 1 at the origin, the first step to the right, then counterclockwise growth.
+- [x] **TR:** Erkenci, asal ve hem asal hem erkenci sayı görünümleri üretmek. **EN:** Render early birds, primes, and their intersection.
+- [x] **TR:** SVG çıktıları, renk açıklamaları, aralıklar ve kaynak veri bağlantıları eklemek. **EN:** Provide SVG exports, legends, ranges, and source-data links.
+- [x] **TR:** Büyük spiral için libpng ile PNG, küçük spiral için SVG üretmek; Gnuplot ile istatistik grafiklerini çizmek. **EN:** Use libpng PNG for large spirals, SVG for small spirals, and Gnuplot for statistical charts.
+- [x] **TR:** Görsel çizgileri basamak grupları, halkalar ve gerekiyorsa köşegen ölçümleriyle değerlendirmek. **EN:** Investigate visual structures with digit groups, rings, and diagonal measurements where useful.
 
 **Acceptance / Kabul:** TR — Spiral koordinatları küçük örneklerle doğrulanmalı; bütün görseller yeniden üretilebilmeli ve kullanılan ölçütleri belirtmeli. EN — Verify spiral coordinates on small examples; all figures are reproducible and identify their metrics.
 
@@ -247,13 +247,14 @@ mahler early 9910 --format json
 mahler scan --max 1000000 --format csv --output results/summary.csv
 mahler scan --max 1000000 --format json --output results/summary.json
 mahler benchmark --max 1000000 --engine window --repeat 3
-mahler summarize results/summary.csv
+mahler analyze --max 1000000 --output results/analysis.json
+mahler plot-data --max 1000000 --output-dir results/plot-data
 mahler ulam --max 10000 --layer early --output figures/ulam-early.svg
 ```
 
-**TR:** `digit`, `inspect`, `early`, `scan` ve `benchmark` çalışıyor. `summarize` ve `ulam` planlanan komutlardır. Grafik komutlarının kesin seçenekleri ilgili aşamada belirlenecek. Komut isimleri ve makineye yönelik alan adları İngilizce olacak; kullanım belgeleri iki dilde sunulacak.
+**TR:** `digit`, `inspect`, `early`, `scan`, `benchmark`, `analyze`, `plot-data` ve `ulam` çalışıyor. Grafik seçenekleri ve yeniden üretim [Faz 5 raporunda](docs/PHASE5_REPORT.md) açıklanır. Komut isimleri ve makineye yönelik alan adları İngilizce, kullanım belgeleri iki dildir.
 
-**EN:** `digit`, `inspect`, `early`, `scan`, and `benchmark` are implemented. `summarize` and `ulam` remain proposed commands. Exact graphics options will be settled in their milestones. Command names and machine-readable field names will be English; usage documentation will be bilingual.
+**EN:** `digit`, `inspect`, `early`, `scan`, `benchmark`, `analyze`, `plot-data`, and `ulam` are implemented. Graphics options and reproduction are documented in the [Phase 5 report](docs/PHASE5_REPORT.md). Command names and machine-readable fields are English; usage documentation is bilingual.
 
 ### Summary fields / Özet alanları
 
@@ -326,7 +327,7 @@ is_fibonacci
 | Runtime target / Süre hedefi | Baseline measured in Phase 3; broader hardware sample needed for a release threshold / İlk ölçüm Faz 3'te yapıldı; sürüm eşiği için daha geniş cihaz örnekleri gerekir |
 | Schedule / Takvim | Estimate after M1–M2; milestones determine order / M1–M2 sonrası tahmin et; sıra aşamalara göre |
 
-**Next step / Sonraki adım:** TR — Faz 5: istatistik grafikleri ve Ulam spirali katmanlarını üretmek. EN — Phase 5: generate statistical figures and Ulam spiral layers.
+**Next step / Sonraki adım:** TR — Faz 6: yayın belgeleri, lisans, CI ve sürüm dosyaları. EN — Phase 6: release documentation, licensing, CI, and release assets.
 
 ## 11. Literature review / Literatür araştırması
 
@@ -494,18 +495,18 @@ Research date / Araştırma tarihi: 2026-09-30.
 ### 13.3 Ulam geometry and export / Ulam geometrisi ve çıktı
 
 ```text
-7  8  9
-6  1  2
 5  4  3
+6  1  2
+7  8  9
 ```
 
 **TR:** Merkez `(0,0)` konumunda 1; ilk adım sağa, ardından yukarı ve saat yönünün tersine. Matematiksel `y` yukarı büyür; görüntü satırlarına dönüşümde ters çevrilir. Hücre `m` sayısını temsil eder, `d_m` rakamını değil. Spiral boyutu `s`, `s²≥N` sağlayan en küçük tek tam sayıdır. `N=1000000` için **1001×1001** hücre kullanılır; 1.000.001–1.002.001 hücreleri veri dışı işaretlenir, erkenci olmayan hücre gibi sayılmaz.
 
 **EN:** Place 1 at `(0,0)`, step right, then up and counterclockwise. Mathematical `y` grows upward and is inverted when mapping to image rows. Cell `m` represents integer `m`, not digit `d_m`. Use the smallest odd side length `s` with `s²≥N`. For `N=1000000`, use **1001×1001** cells; values 1,000,001–1,002,001 are outside the dataset and must not be classified as punctual.
 
-**TR:** Bir milyonluk ham PNG'de hücre başına 1 piksel, ayrıntı sürümünde 4×4 piksel ile **4004×4004** görüntü üretilecek. Hücreler arasına boşluk veya yumuşatma konulmayacak. Sayı etiketleri yalnızca `N≤400` küçük görünümlerde açık olacak. Genel görünümde rakam yazıları milyon kez çizilmeyecek. Rapor başlığı ve renk açıklaması ham matrisin dışında tutulacak; görsele eşlik eden açıklama dosyasında sınır, yön ve renkler bulunacak.
+**TR:** Bir milyonluk ham PNG hücre başına 1 piksel, ayrıntı sürümü 4×4 piksel ile **4004×4004** görüntüdür. Hücreler arasında boşluk veya yumuşatma yoktur. Sayı etiketleri yalnızca `N≤400` küçük SVG görünümlerinde ve `--cell-size≥8` olduğunda eklenir. Rapor başlığı ve renk açıklaması ham matrisin dışında tutulur; açıklama JSON'unda sınır, yön ve renkler bulunur.
 
-**EN:** Produce a raw million-target PNG at one pixel per cell and a detailed **4004×4004** version at 4×4 pixels per cell. No cell gaps or smoothing. Integer labels default to small views with `N≤400`; the overview will not render a million text labels. Keep titles and legends outside the raw matrix, with a companion description recording range, orientation, and colors.
+**EN:** The raw million-target PNG uses one pixel per cell; the detailed **4004×4004** version uses 4×4 pixels per cell. No gaps or smoothing. Integer labels appear only in small SVG views with `N≤400` and `--cell-size≥8`. Titles and legends stay outside the raw matrix, with a companion JSON recording range, orientation, and colors.
 
 ### 13.4 Visual conventions and reproducibility / Görsel kurallar ve yeniden üretim
 
@@ -513,9 +514,9 @@ Research date / Araştırma tarihi: 2026-09-30.
 
 **EN:** Default four-class Ulam colors: neither `#E6E6E6`, early only `#0072B2`, prime only `#D55E00`, both `#009E73`. Out-of-range cells are dark gray with a separate legend. Single-class views include textual descriptions and tables. Frequency/relative-position layers use a pinned Cividis scale with identical bounds for comparable plots. Frequency preserves the punctual/early distinction; logarithmic color transforms are disclosed.
 
-**TR:** Beyaz zemin, 2B gösterim, okunabilir UTF-8 yazı ve sade eksenler kullanılır. Varsayılan grafik boyutu 1200×800 SVG ve 2400×1600 PNG'dir; çok panelli grafikler açık boyutlarla üretilir. Aynı veri ve ölçekle `--lang tr` / `--lang en` ayrı başlık/etiket çıktıları oluşturur. Kaynak dosyaları, özet CSV, grafik betiği, ölçekler, font, araç sürümleri ve veri checksum'ları saklanır. Platforma bağlı font/metadata farkları yüzünden bayt düzeyinde görüntü eşitliği vaat edilmez; veri ve geometrinin eşitliği doğrulanır.
+**TR:** Beyaz zemin, 2B gösterim, UTF-8 yazı ve sade eksenler kullanılır. Boyutlar 1200×800 SVG ve 2400×1600 PNG'dir. `gnuplot -c scripts/figures.gp DATA OUTPUT tr|en svg|png|pdf` aynı veri ve ölçeklerle iki dilde başlık/etiket üretir. Kaynak tabloları, betik, ölçekler, font, araç sürümleri ve sağlama toplamları saklanır. Platforma bağlı font/metadata farkları yüzünden bayt düzeyinde görüntü eşitliği vaat edilmez; veri ve geometri doğrulanır.
 
-**EN:** Use white backgrounds, 2D presentation, readable UTF-8 text, and simple axes. Default sizes are 1200×800 SVG and 2400×1600 PNG, with explicit dimensions for multipanel charts. Generate separate `--lang tr` and `--lang en` labels from identical data and scales. Retain inputs, aggregate CSV, plot scripts, scales, font, tool versions, and data checksums. Platform-dependent fonts/metadata prevent a promise of byte-identical images; validate data and geometry instead.
+**EN:** Use white backgrounds, 2D presentation, UTF-8 text, and simple axes. Sizes are 1200×800 SVG and 2400×1600 PNG. `gnuplot -c scripts/figures.gp DATA OUTPUT tr|en svg|png|pdf` generates bilingual labels from identical data and scales. Retain source tables, scripts, scales, font, tool versions, and checksums. Platform-dependent fonts/metadata prevent a byte-identical image guarantee; validate data and geometry.
 
 **TR:** GitHub README küçük SVG grafiklerini ve PNG spiral önizlemesini kullanır; ayrıntılı görüntüler ve tam veri GitHub Releases için hazırlanır. Yerel etkileşimli görüntüleyici ikinci aşamadır: ilk sürümün doğruluğu ve yayınlanabilir statik grafikler buna bağlı olmayacak. Gnuplot kurulumu yoksa hesaplamalar tamamlanır, çizim için açık bağımlılık bilgisi verilir.
 
@@ -532,7 +533,7 @@ Research date / Araştırma tarihi: 2026-09-30.
 - [x] **TR:** Faz 2 tamamlandı: doğrulanmış algoritmalar ve eski liste karşılaştırması. **EN:** Phase 2 complete: validated algorithms and archived-list comparison.
 - [x] **TR:** Faz 3 tamamlandı: veri seti, manifest ve performans ölçümleri. **EN:** Phase 3 complete: dataset, manifest, and performance measurements.
 - [x] **TR:** Faz 4 tamamlandı: matematiksel analiz, alt kümeler ve mekanizma özetleri. **EN:** Phase 4 complete: mathematical analysis, subsets, and mechanism summaries.
-- [ ] **TR:** Faz 5 tamamlandı: grafikler ve Ulam spirali. **EN:** Phase 5 complete: figures and Ulam spiral.
+- [x] **TR:** Faz 5 tamamlandı: grafikler ve Ulam spirali. **EN:** Phase 5 complete: figures and Ulam spiral.
 - [ ] **TR:** Faz 6 tamamlandı: public yayına hazır sürüm. **EN:** Phase 6 complete: public-release-ready version.
 
 **TR:** Temel sorgular, erkencilik motorları ve toplu veri seti tamamlandı; matematiksel analiz ve araştırma grafikleri sonraki fazlardadır.
@@ -578,3 +579,12 @@ Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı 
 - **TR:** Her asal ve özel küme sonucu, aynı basamak grubundaki açık paydasıyla raporlandı. `1` asal/bileşik sınıfı dışında tutuldu; emirp tanımı ve blok sapması açıkça belgelendi. **EN:** Every prime and special-subset result reports an explicit denominator inside its digit group. `1` is outside prime/composite classes; emirp definition and block deviation are documented explicitly.
 - **TR:** Döndürme sertifikası 781.216 hedefi pozitif olarak sınıflandırdı; bu hedeflerin tümü erkencidir. Sertifika başarısızlığı olumsuz sınıflandırma sayılmaz; `991` bunun örneğidir. **EN:** The rotation certificate positively classifies 781,216 targets, all early. Certificate failure is not a negative classification; `991` is an example.
 - **TR:** Sonuçlar sonlu aralıkta tam sayım olarak, genel teorem ve hipotezlerden ayrı sunuldu. **EN:** Results are presented as complete finite-range enumerations, distinct from general theorems and hypotheses.
+
+## 19. Phase 5 delivery / Faz 5 teslimi
+
+Date / Tarih: 2026-09-30. Evidence / Kanıt: [Phase 5 report / Faz 5 raporu](docs/PHASE5_REPORT.md), [figure catalog / grafik kataloğu](figures/README.md).
+
+- **TR:** C++ `ulam` komutu yedi katmanı SVG/PNG üretir; `plot-data` 10 özet tablo ve veri manifesti hazırlar. PNG desteği isteğe bağlı libpng bağımlılığıdır. **EN:** C++ `ulam` exports seven SVG/PNG layers; `plot-data` generates ten aggregate tables and a manifest. PNG support is an optional libpng dependency.
+- **TR:** 12 istatistik grafiği iki dilde üç biçimde, ayrıca küçük/büyük spiral katmanları üretildi: toplam 88 görsel. Gnuplot betiği ve tek üretim akışı sürümlenir. **EN:** Twelve statistical charts were generated in two languages and three formats, plus small/large spiral layers: 88 figures total. Gnuplot scripts and the reproduction workflow are versioned.
+- **TR:** Bir milyon koordinat bağımsız spiral yürüyüşüyle doğrulandı. PNG tekrar açılarak piksel konumu, renk ve kapsam dışı alan denetlendi; grafik tabloları tam özet CSV ile eşleşti. **EN:** A million coordinates matched an independent spiral walk. PNG decoding verified positions, colors, and outside cells; plot tables matched the full summary CSV.
+- **TR:** Halkalar ve basamağa göre ana köşegenler betimleyici olarak karşılaştırıldı; görsel desenlerden genel teorem çıkarılmadı. Release, grafik bağımlılığı kapalı Release ve sanitizer derlemelerinde altı test grubu geçti. **EN:** Rings and width-matched main diagonals were compared descriptively without deriving general theorems from visual patterns. Six test groups passed in Release, graphics-disabled Release, and sanitizer builds.

@@ -1,0 +1,1 @@
+{"schema_version":1,"maximum":"10000","engine":"window","engine_status":"baseline","repeat":3,"core_ms":[0.299,0.268,0.293],"median_core_ms":0.293,"peak_rss_bytes":1769472,"result_fnv1a64":"01a07e9685f7582c"}

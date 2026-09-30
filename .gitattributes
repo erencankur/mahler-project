@@ -1,0 +1,5 @@
+# Preserve generator output, including SVG formatting and heatmap row separators.
+figures/charts/* linguist-generated=true
+figures/data/* linguist-generated=true
+figures/charts/*.svg -whitespace
+figures/data/heatmap.csv whitespace=-blank-at-eof

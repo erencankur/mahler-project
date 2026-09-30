@@ -1,0 +1,1 @@
+{"schema_version":1,"maximum":"1000000","engine":"numeric-window; reconstruction for occurrence mechanisms","early_targets":838385,"punctual_targets":161615,"early_occurrences":2688255,"ecdf_step":0.001,"heatmap_bins":[50,50],"heatmap_log10_ranges":[[0,6],[0,7]],"frequency_scale":[0,9]}
