@@ -3,4 +3,5 @@
 /.tools/
 /CMakeUserPresets.json
 /.cache/
+/results/
 *.dSYM/

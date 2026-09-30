@@ -1,13 +1,13 @@
 # Mahler Project Roadmap / Mahler Projesi Yol Haritası
 
 Date / Tarih: 2026-09-30  
-Status / Durum: Phases 0–2 complete; Phase 3 next / Faz 0–2 tamamlandı; sıradaki çalışma Faz 3
+Status / Durum: Phases 0–3 complete; Phase 4 next / Faz 0–3 tamamlandı; sıradaki çalışma Faz 4
 
 ## Phase overview / Faz özeti
 
-**TR:** Proje yedi fazda ilerleyecek. Aşağıdaki Faz 0–6, ayrıntılardaki M0–M6 ile aynıdır. Literatür araştırması ve grafik araçlarının seçimi tamamlandı; Faz 0–2 uygulandı ve doğrulandı. Her fazın tamamlanması, aşağıdaki çıktılar ve Bölüm 6'daki kabul ölçütleriyle değerlendirilecek.
+**TR:** Proje yedi fazda ilerleyecek. Aşağıdaki Faz 0–6, ayrıntılardaki M0–M6 ile aynıdır. Literatür araştırması ve grafik araçlarının seçimi tamamlandı; Faz 0–3 uygulandı ve doğrulandı. Her fazın tamamlanması, aşağıdaki çıktılar ve Bölüm 6'daki kabul ölçütleriyle değerlendirilecek.
 
-**EN:** The project proceeds through seven phases. Phases 0–6 below correspond to M0–M6 in the detailed plan. Literature research and graphics-tool selection are complete; Phases 0–2 are implemented and verified. Completion is determined by the deliverables below and the acceptance criteria in Section 6.
+**EN:** The project proceeds through seven phases. Phases 0–6 below correspond to M0–M6 in the detailed plan. Literature research and graphics-tool selection are complete; Phases 0–3 are implemented and verified. Completion is determined by the deliverables below and the acceptance criteria in Section 6.
 
 | Phase / Faz | Work / Çalışma | Deliverable / Çıktı |
 | --- | --- | --- |
@@ -25,9 +25,9 @@ Status / Durum: Phases 0–2 complete; Phase 3 next / Faz 0–2 tamamlandı; sı
 
 ### Implementation approval and current scope / Uygulama onayı ve mevcut kapsam
 
-**TR:** Kullanıcı 2026-09-30 tarihinde “Başla” diyerek uygulamayı başlattı ve ardından “Devam et” diyerek Faz 2'ye geçilmesini istedi. Faz 0–2 tamamlandı; sonraki çalışma Faz 3'te yeniden üretilebilir toplu veri seti ve ölçümlerdir. Bütün proje değişiklikleri `mahler-project/` içinde yapılır; GitHub yayını ayrıca kullanıcıyla kesinleştirilecek.
+**TR:** Kullanıcı 2026-09-30 tarihinde “Başla” diyerek uygulamayı başlattı; iki “Devam et” isteğiyle Faz 2 ve Faz 3'e geçildi. Faz 0–3 tamamlandı; sonraki çalışma Faz 4'te matematiksel veri analizidir. Bütün proje değişiklikleri `mahler-project/` içinde yapılır; GitHub yayını ayrıca kullanıcıyla kesinleştirilecek.
 
-**EN:** The user started implementation with “Başla” on 2026-09-30 and then requested Phase 2 with “Devam et.” Phases 0–2 are complete; Phase 3 adds a reproducible batch dataset and measurements. All project changes stay in `mahler-project/`; GitHub publication will be confirmed separately.
+**EN:** The user started implementation with “Başla” on 2026-09-30 and continued into Phases 2 and 3 with two “Devam et” requests. Phases 0–3 are complete; Phase 4 adds mathematical data analysis. All project changes stay in `mahler-project/`; GitHub publication will be confirmed separately.
 
 ## 1. Purpose / Amaç
 
@@ -194,12 +194,12 @@ mahler-project/
 
 ### M3 — One-million scan and exports / Bir milyon sayı taraması ve çıktılar
 
-- [ ] **TR:** `scan --max 1000000` ile bütün hedefler için özet kayıt üretmek. **EN:** Generate summaries for every target using `scan --max 1000000`.
-- [ ] **TR:** CSV ve JSON çıktıları, isteğe bağlı konum çıktısı ve çalışma manifesti oluşturmak. **EN:** Provide CSV and JSON exports, optional occurrence exports, and a run manifest.
-- [ ] **TR:** 10.000, 100.000 ve 1.000.000 ölçeklerinde süre ve bellek ölçmek. **EN:** Measure runtime and memory at scales of 10,000, 100,000, and 1,000,000.
-- [ ] **TR:** Aynı girdilerle tekrarlanan çalışmalarda matematiksel çıktıların aynı olduğunu doğrulamak. **EN:** Verify identical mathematical outputs across repeated runs with the same inputs.
-- [ ] **TR:** Basamak adetlerini `0,45,630,6896,73059,757755`, toplam erkenci adedini `838385` dış hedefleriyle karşılaştırmak. **EN:** Compare digit-group counts and the total with the external targets.
-- [ ] **TR:** Doğrulanmış motorları çıktı maliyetini çekirdek süresinden ayırarak karşılaştırmak; deneysel motor sonuçlarını ayrıca etiketlemek. **EN:** Benchmark validated engines separately from output cost; label experimental-engine results explicitly.
+- [x] **TR:** `scan --max 1000000` ile bütün hedefler için özet kayıt üretmek. **EN:** Generate summaries for every target using `scan --max 1000000`.
+- [x] **TR:** CSV ve JSON çıktıları, isteğe bağlı konum çıktısı ve çalışma manifesti oluşturmak. **EN:** Provide CSV and JSON exports, optional occurrence exports, and a run manifest.
+- [x] **TR:** 10.000, 100.000 ve 1.000.000 ölçeklerinde süre ve bellek ölçmek. **EN:** Measure runtime and memory at scales of 10,000, 100,000, and 1,000,000.
+- [x] **TR:** Aynı girdilerle tekrarlanan çalışmalarda matematiksel çıktıların aynı olduğunu doğrulamak. **EN:** Verify identical mathematical outputs across repeated runs with the same inputs.
+- [x] **TR:** Basamak adetlerini `0,45,630,6896,73059,757755`, toplam erkenci adedini `838385` dış hedefleriyle karşılaştırmak. **EN:** Compare digit-group counts and the total with the external targets.
+- [x] **TR:** Doğrulanmış motorları çıktı maliyetini çekirdek süresinden ayırarak karşılaştırmak; deneysel motor sonuçlarını ayrıca etiketlemek. **EN:** Benchmark validated engines separately from output cost; label experimental-engine results explicitly.
 
 **Acceptance / Kabul:** TR — Eksiksiz bir milyon özet kayıt, doğrulanmış şema, ölçüm raporu ve yeniden üretim komutları bulunmalı. EN — Deliver one million complete summary records, a verified schema, a measurement report, and reproduction commands.
 
@@ -246,13 +246,14 @@ mahler inspect 9910
 mahler early 9910 --format json
 mahler scan --max 1000000 --format csv --output results/summary.csv
 mahler scan --max 1000000 --format json --output results/summary.json
+mahler benchmark --max 1000000 --engine window --repeat 3
 mahler summarize results/summary.csv
 mahler ulam --max 10000 --layer early --output figures/ulam-early.svg
 ```
 
-**TR:** `digit`, `inspect` ve `early` çalışıyor. `scan`, `summarize` ve `ulam` planlanan komutlardır. Konum dışa aktarımı ve grafik komutlarının kesin seçenekleri ilgili aşamada belirlenecek. Komut isimleri ve makineye yönelik alan adları İngilizce olacak; kullanım belgeleri iki dilde sunulacak.
+**TR:** `digit`, `inspect`, `early`, `scan` ve `benchmark` çalışıyor. `summarize` ve `ulam` planlanan komutlardır. Grafik komutlarının kesin seçenekleri ilgili aşamada belirlenecek. Komut isimleri ve makineye yönelik alan adları İngilizce olacak; kullanım belgeleri iki dilde sunulacak.
 
-**EN:** `digit`, `inspect`, and `early` are implemented. `scan`, `summarize`, and `ulam` remain proposed commands. Exact occurrence-export and graphics options will be settled in their milestones. Command names and machine-readable field names will be English; usage documentation will be bilingual.
+**EN:** `digit`, `inspect`, `early`, `scan`, and `benchmark` are implemented. `summarize` and `ulam` remain proposed commands. Exact graphics options will be settled in their milestones. Command names and machine-readable field names will be English; usage documentation will be bilingual.
 
 ### Summary fields / Özet alanları
 
@@ -317,15 +318,15 @@ is_fibonacci
 
 | Topic / Konu | Proposed direction / Önerilen yön |
 | --- | --- |
-| Test framework / Test çatısı | Select during M1; keep dependencies small / M1'de seç; bağımlılıkları az tut |
-| CLI and JSON libraries / CLI ve JSON kütüphaneleri | Select during M1–M3 according to requirements / Gereksinimlere göre M1–M3'te seç |
+| Test framework / Test çatısı | CTest and focused C++/CMake checks; no third-party test framework / CTest ve odaklı C++/CMake kontrolleri; dış test çatısı yok |
+| CLI and JSON libraries / CLI ve JSON kütüphaneleri | Standard C++ CLI and streamed JSON writer; optional Python standard-library export verifier / Standart C++ CLI ve akışlı JSON yazıcı; isteğe bağlı Python standart kütüphane doğrulayıcısı |
 | License / Lisans | User selection before public release / Public yayından önce kullanıcı seçimi |
 | Large Ulam rendering / Büyük Ulam gösterimi | Decided: C++ + libpng; geometry and export rules in Section 13 / Karar: C++ + libpng; geometri ve çıktı kuralları Bölüm 13'te |
 | Interactive report / Etkileşimli rapor | Optional HTML/JavaScript consumer of C++ outputs / C++ çıktıları kullanan isteğe bağlı HTML/JavaScript |
-| Runtime target / Süre hedefi | Set after baseline measurements / İlk ölçümlerden sonra belirle |
+| Runtime target / Süre hedefi | Baseline measured in Phase 3; broader hardware sample needed for a release threshold / İlk ölçüm Faz 3'te yapıldı; sürüm eşiği için daha geniş cihaz örnekleri gerekir |
 | Schedule / Takvim | Estimate after M1–M2; milestones determine order / M1–M2 sonrası tahmin et; sıra aşamalara göre |
 
-**Next step / Sonraki adım:** TR — Faz 3: `scan --max` toplu çıktıları, çalışma manifesti ve süre/bellek ölçümleri. EN — Phase 3: `scan --max` batch exports, run manifest, and runtime/memory measurements.
+**Next step / Sonraki adım:** TR — Faz 4: frekans dağılımı, asallık, özel kümeler, döndürme ve elde etkilerinin analizi. EN — Phase 4: investigate frequency distributions, primality, special subsets, rotations, and carry effects.
 
 ## 11. Literature review / Literatür araştırması
 
@@ -529,12 +530,13 @@ Research date / Araştırma tarihi: 2026-09-30.
 - [x] **TR:** Kullanıcı uygulamaya başlamayı onayladı. **EN:** User approved starting implementation.
 - [x] **TR:** Faz 0–1 tamamlandı: sözleşme ve çalışan yazılım temeli. **EN:** Phases 0–1 complete: specification and working software foundation.
 - [x] **TR:** Faz 2 tamamlandı: doğrulanmış algoritmalar ve eski liste karşılaştırması. **EN:** Phase 2 complete: validated algorithms and archived-list comparison.
-- [ ] **TR:** Faz 3–5 tamamlandı: veri, analiz ve grafikler. **EN:** Phases 3–5 complete: dataset, analyses, and figures.
+- [x] **TR:** Faz 3 tamamlandı: veri seti, manifest ve performans ölçümleri. **EN:** Phase 3 complete: dataset, manifest, and performance measurements.
+- [ ] **TR:** Faz 4–5 tamamlandı: analiz ve grafikler. **EN:** Phases 4–5 complete: analyses and figures.
 - [ ] **TR:** Faz 6 tamamlandı: public yayına hazır sürüm. **EN:** Phase 6 complete: public-release-ready version.
 
-**TR:** Temel sorgular ve erkencilik motorları tamamlandı; toplu veri dosyaları ve araştırma grafikleri henüz üretilmedi.
+**TR:** Temel sorgular, erkencilik motorları ve toplu veri seti tamamlandı; matematiksel analiz ve araştırma grafikleri sonraki fazlardadır.
 
-**EN:** Foundational queries and early-bird engines are complete; batch data files and research figures have not yet been generated.
+**EN:** Foundational queries, early-bird engines, and the batch dataset are complete; mathematical analysis and research figures are next.
 
 ## 15. Phase 0–1 delivery / Faz 0–1 teslimi
 
@@ -556,3 +558,13 @@ Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı 
 - **TR:** Bir milyon hedefte 838.385 erkenci bulundu; bir–altı basamak grupları dış adet hedefleriyle uyuştu. **EN:** The million-target scan found 838,385 early birds; digit groups one through six matched external counts.
 - **TR:** Eski genel PDF'de 28 eksik kayıt ve 62 frekans farkı; asal PDF'de 1 eksik kayıt ve 6 frekans farkı raporlandı. Arşiv dosyaları değiştirilmedi. **EN:** The archived general PDF has 28 missing entries and 62 frequency differences; the prime PDF has one missing entry and six frequency differences. Archived files were not changed.
 - **TR:** Toplu CSV/JSON, çalışma manifesti, performans ölçümleri ve grafikler sonraki fazlardadır. **EN:** Batch CSV/JSON, a run manifest, performance measurements, and figures belong to later phases.
+
+## 17. Phase 3 delivery / Faz 3 teslimi
+
+Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı kanıt: [Phase 3 dataset and measurements / Faz 3 veri seti ve ölçümler](docs/PHASE3_REPORT.md).
+
+- **TR:** `scan` CSV/JSON özetleri, isteğe bağlı konum CSV'si ve varsayılan/özel yollu manifest üretir. `benchmark` motorları dosya yazımından ayrı ölçer. **EN:** `scan` generates CSV/JSON summaries, optional occurrence CSV, and a default/custom manifest. `benchmark` measures engines separately from file writing.
+- **TR:** Bir milyon özet ve 2.688.255 erken konum kaydı üretildi; 838.385 erkenci hedef sayıldı. Yerel dosyalar `results/` altında Git dışında tutulur. **EN:** Generated one million summaries and 2,688,255 early occurrence records, with 838,385 early targets. Local files are ignored under `results/`.
+- **TR:** CSV/JSON özetleri alan alan, bütün konum kayıtları gerçek dizi metni ve kaynak ofsetleriyle doğrulandı. Tam CSV tekrarı bayt düzeyinde eşleşti. **EN:** CSV/JSON summaries were compared field by field; every occurrence was checked against sequence text and source offsets. A repeated full CSV run matched byte for byte.
+- **TR:** 10.000, 100.000 ve 1.000.000 ölçeklerinde her motor ayrı süreçte üçer kez ölçüldü. Release ve sanitizer derlemelerinde dört test grubu geçti. **EN:** Both engines were measured in separate processes with three repeats at 10,000, 100,000, and 1,000,000. Four test groups passed in Release and sanitizer builds.
+- **TR:** Dosya boyutları, SHA-256 özetleri, deney ortamı, süre ve bellek değerleri raporda kayıtlıdır. **EN:** The report records file sizes, SHA-256 hashes, test environment, timings, and memory values.

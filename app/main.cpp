@@ -1,13 +1,13 @@
+#include "batch.hpp"
+#include "cli_util.hpp"
 #include "mahler/early.hpp"
 #include "mahler/sequence.hpp"
 
-#include <charconv>
 #include <cstdint>
 #include <exception>
 #include <iostream>
 #include <stdexcept>
 #include <string_view>
-#include <system_error>
 
 namespace {
 
@@ -17,23 +17,13 @@ constexpr std::string_view usage =
     "  mahler digit <position> [--format text|json]\n"
     "  mahler inspect <number> [--format text|json]\n"
     "  mahler early <number> [--format text|json]  (1..1000000)\n"
+    "  mahler scan --max <number> --output <file> [--format csv|json]\n"
+    "              [--occurrences <csv-file>] [--manifest <json-file>]\n"
+    "  mahler benchmark --max <number> [--engine window|reconstruct] [--repeat <count>]\n"
     "  mahler --help\n"
     "  mahler --version\n\n"
     "Positions start at 1; the initial 0. is excluded.\n"
     "inspect reports natural position; early reports first occurrence and early frequency.\n";
-
-std::uint64_t parse_positive(std::string_view value) {
-    std::uint64_t result = 0;
-    const auto parsed = std::from_chars(value.data(), value.data() + value.size(), result);
-    if (parsed.ec == std::errc::result_out_of_range) {
-        throw std::overflow_error("input exceeds uint64_t range");
-    }
-    if (value.empty() || parsed.ec != std::errc{} ||
-        parsed.ptr != value.data() + value.size() || result == 0) {
-        throw std::invalid_argument("expected a positive decimal integer without signs or spaces");
-    }
-    return result;
-}
 
 } // namespace
 
@@ -43,6 +33,10 @@ int main(int argc, char** argv) {
             std::cout << usage;
         } else if (argc == 2 && std::string_view(argv[1]) == "--version") {
             std::cout << "mahler " << MAHLER_VERSION << '\n';
+        } else if (argc >= 2 && std::string_view(argv[1]) == "scan") {
+            run_scan_command(argc, argv);
+        } else if (argc >= 2 && std::string_view(argv[1]) == "benchmark") {
+            run_benchmark_command(argc, argv);
         } else {
             if (argc != 3 && argc != 5) {
                 throw std::invalid_argument("invalid arguments; use mahler --help");

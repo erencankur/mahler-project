@@ -8,9 +8,14 @@ target_include_directories(mahler_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/inclu
 target_compile_features(mahler_core PUBLIC cxx_std_20)
 set_target_properties(mahler_core PROPERTIES CXX_EXTENSIONS OFF)
 
-add_executable(mahler app/main.cpp)
+add_executable(mahler app/main.cpp app/batch.cpp)
 target_link_libraries(mahler PRIVATE mahler_core)
-target_compile_definitions(mahler PRIVATE MAHLER_VERSION="${PROJECT_VERSION}-dev")
+target_compile_definitions(mahler PRIVATE
+    MAHLER_VERSION="${PROJECT_VERSION}-dev"
+    MAHLER_COMPILER_ID="${CMAKE_CXX_COMPILER_ID}"
+    MAHLER_COMPILER_VERSION="${CMAKE_CXX_COMPILER_VERSION}"
+    MAHLER_BUILD_TYPE="$<CONFIG>"
+    MAHLER_SANITIZERS_ENABLED=$<BOOL:${MAHLER_ENABLE_SANITIZERS}>)
 set_target_properties(mahler PROPERTIES CXX_EXTENSIONS OFF)
 
 function(mahler_configure_target target)
@@ -43,4 +48,8 @@ if(BUILD_TESTING)
     add_test(NAME cli COMMAND "${CMAKE_COMMAND}"
         "-DMAHLER=$<TARGET_FILE:mahler>"
         -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cli_tests.cmake")
+    add_test(NAME batch COMMAND "${CMAKE_COMMAND}"
+        "-DMAHLER=$<TARGET_FILE:mahler>"
+        "-DTEST_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/batch-test-output"
+        -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/batch_tests.cmake")
 endif()

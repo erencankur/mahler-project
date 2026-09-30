@@ -8,7 +8,7 @@ A C++20 mathematical research project for the decimal Champernowne constant, als
 0.123456789101112131415...
 ```
 
-The C++ program provides direct digit lookup, natural-position queries, and early-bird searches for targets through 1,000,000. Prime analysis and Ulam spiral figures are later phases.
+The C++ program provides direct digit lookup, early-bird searches, and reproducible CSV/JSON exports for targets through 1,000,000. Prime analysis and Ulam spiral figures are later phases.
 
 ## Current capabilities
 
@@ -19,8 +19,10 @@ The C++ program provides direct digit lookup, natural-position queries, and earl
 - Produce text or JSON query output.
 - Compute first occurrence, early-bird status, early frequency, and advance distance with `early`.
 - Cross-check numeric-window scanning against an independent per-target reconstruction engine.
+- Export target summaries, optional early occurrence records, and a run manifest with checksums.
+- Measure both engines without including file output in core timing.
 
-Batch CSV/JSON exports, aggregate analysis, and figures are **not implemented yet**. `inspect` reports natural position only; use `early` for early-bird properties.
+Aggregate mathematical analysis and figures are **not implemented yet**. `inspect` reports natural position only; use `early` for early-bird properties.
 
 ## Build on macOS
 
@@ -56,6 +58,10 @@ ctest --test-dir build --output-on-failure
 ./build/mahler early 9910 --format json
 # {"schema_version":1,"number":"9910","digit_count":4,"natural_position":"38530","first_position":"188","is_early":true,"early_frequency":4,"advance_digits":"38342"}
 
+./build/mahler scan --max 1000000 --format csv --output results/summary-1000000.csv --occurrences results/occurrences-1000000.csv
+./build/mahler scan --max 1000000 --format json --output results/summary-1000000.json
+./build/mahler benchmark --max 1000000 --engine window --repeat 3
+
 ./build/mahler --help
 ./build/mahler --version
 ```
@@ -64,7 +70,7 @@ Positions start at 1 and exclude the initial `0.`. JSON serializes position and 
 
 ## Validation
 
-Core checks cover an independently constructed prefix through 10,000, large positions, and overflow. Early-bird checks compare all early positions against direct substring searches through 9,999, compare both engines' first positions and frequencies for every target through one million, and check selected carry cases independently. The one-million scan found **838,385** early birds. CLI checks cover exact text/JSON outputs, invalid input, and exit codes. [Phase 2 report](docs/PHASE2_REPORT.md) gives the results and archived-list comparison.
+Core checks cover an independently constructed prefix through 10,000, large positions, and overflow. Early-bird checks compare all early positions against direct substring searches through 9,999, compare both engines' first positions and frequencies for every target through one million, and check selected carry cases independently. The one-million scan found **838,385** early birds and **2,688,255** early occurrence positions. Batch tests verify output schemas, repetition, and invalid options. The optional [export verifier](scripts/verify_exports.py) checks complete CSV/JSON outputs and every occurrence against the digit sequence. Results and measurements are in the [Phase 3 report](docs/PHASE3_REPORT.md).
 
 To run additional memory and arithmetic checks with Apple Clang:
 
@@ -79,6 +85,7 @@ ctest --test-dir build-sanitize --output-on-failure
 - [Mathematical and API specification](docs/en/SPECIFICATION.md)
 - [Bilingual roadmap, research references, and graphics decisions](ROADMAP.md)
 - [Phase 2 verification and archived-list comparison](docs/PHASE2_REPORT.md)
+- [Phase 3 dataset, checksums, and measurements](docs/PHASE3_REPORT.md)
 - [OEIS A033307: Champernowne digits](https://oeis.org/A033307)
 - [OEIS A117804: natural positions](https://oeis.org/A117804)
 - [OEIS A116700: early-bird numbers](https://oeis.org/A116700)

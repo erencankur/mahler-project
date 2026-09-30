@@ -68,6 +68,9 @@ Zero is rejected by all APIs other than the digit-width helper with `std::invali
 mahler digit <position> [--format text|json]
 mahler inspect <number> [--format text|json]
 mahler early <number> [--format text|json]  # 1..1000000
+mahler scan --max <number> --output <file> [--format csv|json]
+            [--occurrences <csv-file>] [--manifest <json-file>]
+mahler benchmark --max <number> [--engine window|reconstruct] [--repeat <count>]
 mahler --help
 mahler --version
 ```
@@ -84,11 +87,13 @@ Exit codes: 0 success; 1 runtime/output error; 2 usage or invalid input; 3 input
 
 Potentially large positions, targets, and advance distances are decimal strings so consumers can parse them losslessly. `early_frequency` is an integer within the bounded target range. `inspect` retains its Phase 1 schema; use `early` for early-bird fields.
 
-## Planned dataset contract
+## Implemented dataset contract
 
-The batch dataset is not implemented yet. It will include `number`, `digit_count`, `natural_position`, `first_position`, `is_early`, `early_frequency`, and `advance_digits`; special-number fields are added only when their analyses are implemented. Each supported target gets one summary row, including punctual targets.
+`scan` requires `1≤maximum≤1,000,000` and `--output`. Its summary has `number`, `digit_count`, `natural_position`, `first_position`, `is_early`, `early_frequency`, and `advance_digits`; each target has one row, including punctual targets. The default format is CSV. JSON is one object with `schema_version:1`, `maximum` (decimal string), `record_count` (integer), and a `records` array. Special-number fields are reserved for later analysis.
 
-CSV uses UTF-8, English field names, decimal integers without locale separators, and `true`/`false` booleans. JSON preserves large integers as decimal strings. The dataset schema will have its own declared version; it is not implicitly the current query schema. Uncomputed optional properties must be absent or explicitly unavailable, never silently false. Full occurrence records are separate from target summaries.
+CSV uses UTF-8, English field names, decimal integers without locale separators, and `true`/`false` booleans. JSON preserves target numbers, positions, and advance distances as decimal strings; widths and frequencies are integers. The dataset schema version is independently declared as 1. Uncomputed special-number properties are absent. `--occurrences` optionally writes separate CSV records with `number`, `position`, `first_source`, `last_source`, and `first_source_digit_offset` in target/position order. It records only starts before the natural position. This output uses reconstruction and checks each target's count and first position against the window scan.
+
+The default manifest path is `<output>.manifest.json`; `--manifest` overrides it. Paths must be distinct. The manifest records range, indexing, version, compiler/build type, platform/model, engine choices, counts, phase timings, process peak resident memory, and FNV-1a 64 file checksums. FNV is a reproducibility checksum rather than a cryptographic signature. `benchmark` measures the core engine alone over 1–20 repeats; its result checksum makes comparisons meaningful. Output and checksum read times are excluded from `core_ms`.
 
 ## Source and verification policy
 
@@ -102,4 +107,4 @@ OEIS conventions must be inspected per sequence. An initial zero and a zero-base
 
 Normality is an asymptotic property. Finite block deviation `delta_q(T)` and early-frequency `E(m)` are different quantities; neither finite scanning nor graphics proves a general normality theorem. Existing results, new computational findings, and hypotheses will be labeled separately.
 
-Core validation uses independent string concatenation through 10,000, known examples and boundaries, and a wider-arithmetic closed-form oracle for large positions. Only the test oracle uses the Apple Clang/GCC `__uint128_t` extension; production code uses standard C++20 fixed-width arithmetic. Early validation compares all positions with direct substring search through 9,999, compares first positions and frequencies between both engines through one million, and verifies selected carry cases by direct search. See the [Phase 2 report](../PHASE2_REPORT.md). Legacy files remain read-only.
+Core validation uses independent string concatenation through 10,000, known examples and boundaries, and a wider-arithmetic closed-form oracle for large positions. Only the test oracle uses the Apple Clang/GCC `__uint128_t` extension; production code uses standard C++20 fixed-width arithmetic. Early validation compares all positions with direct substring search through 9,999, compares first positions and frequencies between both engines through one million, and verifies selected carry cases by direct search. Batch tests and the optional standard-library [export verifier](../../scripts/verify_exports.py) check output consistency; see the [Phase 2](../PHASE2_REPORT.md) and [Phase 3](../PHASE3_REPORT.md) reports. Legacy files remain read-only.
