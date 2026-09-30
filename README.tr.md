@@ -21,6 +21,7 @@ C++ uygulaması doğrudan rakam sorgusu, erkencilik araması ve 1–1.000.000 ar
 - Sayısal pencere taramasını bağımsız hedef başına yeniden kurma motoruyla karşılaştırma.
 - Hedef özetlerini, isteğe bağlı erken konum kayıtlarını ve sağlama toplamlı çalışma manifestini dışa aktarma.
 - Dosya yazımını çekirdek ölçümden ayırarak iki motorun süresini ölçme.
+- Frekansları, özel sayı kümelerini, kaynak sınırı mekanizmalarını, döndürme tanıklarını ve sonlu rakam bloklarını analiz etme.
 
 Toplu matematiksel analiz ve grafikler **henüz uygulanmadı**. `inspect` yalnızca doğal konumu gösterir; erkencilik bilgileri için `early` kullanılır.
 
@@ -61,6 +62,7 @@ ctest --test-dir build --output-on-failure
 ./build/mahler scan --max 1000000 --format csv --output results/summary-1000000.csv --occurrences results/occurrences-1000000.csv
 ./build/mahler scan --max 1000000 --format json --output results/summary-1000000.json
 ./build/mahler benchmark --max 1000000 --engine window --repeat 3
+./build/mahler analyze --max 1000000 --output results/analysis-1000000.json
 
 ./build/mahler --help
 ./build/mahler --version
@@ -71,6 +73,8 @@ Konumlar 1'den başlar; baştaki `0.` sayılmaz. JSON'da konumlar ve hedef/kayna
 ## Doğrulama
 
 Çekirdek kontrolleri 10.000'e kadar bağımsız oluşturulmuş öneği, büyük konumları ve taşmaları kapsar. Erkencilik kontrolleri 9.999'a kadar bütün erken konumları doğrudan metin aramasıyla, bir milyona kadar her hedefin ilk konumunu ve frekansını iki C++ motoruyla karşılaştırır; seçili elde örnekleri ayrıca bağımsız aranır. Bir milyonluk taramada **838.385** erkenci sayı ve **2.688.255** erken konum bulundu. Toplu çıktı testleri şemaları, tekrarları ve hatalı seçenekleri sınar. İsteğe bağlı [çıktı doğrulayıcısı](scripts/verify_exports.py) tam CSV/JSON dosyalarını ve her konumu dizi metnine karşı denetler. Sonuçlar ve ölçümler [Faz 3 raporunda](docs/PHASE3_REPORT.md).
+
+[Faz 4 analizi](docs/PHASE4_REPORT.md), bir milyonluk aralıktaki frekansları, asal ve özel sayı kümelerinin paydalarını, sınır mekanizmalarını ve sonlu blok istatistiklerini açıklar.
 
 Apple Clang ile ek bellek ve aritmetik kontrolleri:
 
@@ -86,6 +90,7 @@ ctest --test-dir build-sanitize --output-on-failure
 - [İki dilli yol haritası, araştırma kaynakları ve grafik kararları](ROADMAP.md)
 - [Faz 2 doğrulaması ve eski listelerin karşılaştırması](docs/PHASE2_REPORT.md)
 - [Faz 3 veri seti, sağlama toplamları ve ölçümleri](docs/PHASE3_REPORT.md)
+- [Faz 4 matematiksel analiz ve örnekler](docs/PHASE4_REPORT.md)
 - [OEIS A033307: Champernowne rakamları](https://oeis.org/A033307)
 - [OEIS A117804: doğal konumlar](https://oeis.org/A117804)
 - [OEIS A116700: erkenci sayılar](https://oeis.org/A116700)

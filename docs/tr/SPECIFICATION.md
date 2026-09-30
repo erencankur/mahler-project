@@ -71,6 +71,7 @@ mahler early <number> [--format text|json]  # 1..1000000
 mahler scan --max <number> --output <file> [--format csv|json]
             [--occurrences <csv-file>] [--manifest <json-file>]
 mahler benchmark --max <number> [--engine window|reconstruct] [--repeat <count>]
+mahler analyze --max <number> --output <json-file>
 mahler --help
 mahler --version
 ```
@@ -94,6 +95,8 @@ Büyük olabilecek konumlar, hedefler ve mesafeler kayıpsız okunabilmeleri iç
 CSV; UTF-8, İngilizce alan adları, yerel ayraç içermeyen ondalık tam sayılar ve `true`/`false` kullanır. JSON hedef sayıları, konumları ve mesafeleri ondalık metin; basamak ve frekansları tam sayı olarak korur. Veri seti şema sürümü ayrıca `1` olarak belirtilir. Hesaplanmayan özel sayı alanları yazılmaz. `--occurrences`; `number`, `position`, `first_source`, `last_source`, `first_source_digit_offset` alanlı ayrı CSV üretir. Kayıtlar hedef ve konuma göre sıralıdır, yalnız doğal konumdan önceki başlangıçları içerir. Bu çıktı yeniden kurma yöntemini kullanır ve her hedefte frekansı/ilk konumu pencere motoruyla karşılaştırır.
 
 Varsayılan manifest yolu `<output>.manifest.json`; `--manifest` ile değiştirilebilir. Dosya yolları birbirinden farklı olmalıdır. Manifest; aralık, indeksleme, sürüm, derleyici/derleme türü, sistem/model, motorlar, adetler, aşama süreleri, sürecin tepe belleği ve FNV-1a 64 dosya sağlama toplamlarını kaydeder. FNV tekrar üretim kontrolüdür, kriptografik imza değildir. `benchmark`, motor çekirdeğini 1–20 tekrar ölçer ve karşılaştırma için sonuç sağlama toplamı üretir. Dosya yazımı ile sağlama toplamı okuması `core_ms` dışındadır.
+
+`analyze`, aynı sınırlı aralık için şema sürümü 1 JSON üretir. Hedef basamağına göre adetleri, her basamak grubunun tam erken frekans histogramını, asal/bileşik/palindrom/emirp/Fibonacci paydalarını ve erkenci adetlerini, ilk görünüm uçlarını, basit döndürme tanığı kapsamını, görünüm mekanizmalarını ve 1–3 uzunluklu sonlu rakam blok istatistiklerini içerir. Asallık Eratosthenes eleğiyle hesaplanır; emirp, ters ondalık gösterimi farklı ve asal olan asal sayıdır. `crossed_boundaries`, `last_source-first_source` değeridir; `maximum_trailing_nines`, geçilen kaynak artışlarındaki en büyük elde uzunluğudur. Blok sapması `delta_q=max_w |count(w)/(T-q+1)-10^-q|` olup başında sıfır bulunanlar dahil bütün örtüşmeli blokları sayar. Bunlar normallik kanıtı değil, sonlu önek tanımlarıdır.
 
 ## Kaynak ve doğrulama politikası
 

@@ -71,6 +71,7 @@ mahler early <number> [--format text|json]  # 1..1000000
 mahler scan --max <number> --output <file> [--format csv|json]
             [--occurrences <csv-file>] [--manifest <json-file>]
 mahler benchmark --max <number> [--engine window|reconstruct] [--repeat <count>]
+mahler analyze --max <number> --output <json-file>
 mahler --help
 mahler --version
 ```
@@ -94,6 +95,8 @@ Potentially large positions, targets, and advance distances are decimal strings 
 CSV uses UTF-8, English field names, decimal integers without locale separators, and `true`/`false` booleans. JSON preserves target numbers, positions, and advance distances as decimal strings; widths and frequencies are integers. The dataset schema version is independently declared as 1. Uncomputed special-number properties are absent. `--occurrences` optionally writes separate CSV records with `number`, `position`, `first_source`, `last_source`, and `first_source_digit_offset` in target/position order. It records only starts before the natural position. This output uses reconstruction and checks each target's count and first position against the window scan.
 
 The default manifest path is `<output>.manifest.json`; `--manifest` overrides it. Paths must be distinct. The manifest records range, indexing, version, compiler/build type, platform/model, engine choices, counts, phase timings, process peak resident memory, and FNV-1a 64 file checksums. FNV is a reproducibility checksum rather than a cryptographic signature. `benchmark` measures the core engine alone over 1–20 repeats; its result checksum makes comparisons meaningful. Output and checksum read times are excluded from `core_ms`.
+
+`analyze` writes schema version 1 JSON for the same bounded range. It includes counts by target digit width, the complete early-frequency histogram per width, prime/composite/palindrome/emirp/Fibonacci denominators and early counts, extreme first-occurrence values, simple rotation-certificate coverage, occurrence mechanisms, and finite digit-block statistics for lengths 1–3. Primality comes from a Sieve of Eratosthenes; an emirp is a prime with a different reversed decimal prime. `crossed_boundaries` is `last_source-first_source`; `maximum_trailing_nines` is the largest carry length among crossed source increments. Block deviation is `delta_q=max_w |count(w)/(T-q+1)-10^-q|`, with all overlapping blocks including leading zeros. These are finite-prefix descriptions, not normality proofs.
 
 ## Source and verification policy
 

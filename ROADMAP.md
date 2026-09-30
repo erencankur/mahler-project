@@ -1,13 +1,13 @@
 # Mahler Project Roadmap / Mahler Projesi Yol Haritası
 
 Date / Tarih: 2026-09-30  
-Status / Durum: Phases 0–3 complete; Phase 4 next / Faz 0–3 tamamlandı; sıradaki çalışma Faz 4
+Status / Durum: Phases 0–4 complete; Phase 5 next / Faz 0–4 tamamlandı; sıradaki çalışma Faz 5
 
 ## Phase overview / Faz özeti
 
-**TR:** Proje yedi fazda ilerleyecek. Aşağıdaki Faz 0–6, ayrıntılardaki M0–M6 ile aynıdır. Literatür araştırması ve grafik araçlarının seçimi tamamlandı; Faz 0–3 uygulandı ve doğrulandı. Her fazın tamamlanması, aşağıdaki çıktılar ve Bölüm 6'daki kabul ölçütleriyle değerlendirilecek.
+**TR:** Proje yedi fazda ilerleyecek. Aşağıdaki Faz 0–6, ayrıntılardaki M0–M6 ile aynıdır. Literatür araştırması ve grafik araçlarının seçimi tamamlandı; Faz 0–4 uygulandı ve doğrulandı. Her fazın tamamlanması, aşağıdaki çıktılar ve Bölüm 6'daki kabul ölçütleriyle değerlendirilecek.
 
-**EN:** The project proceeds through seven phases. Phases 0–6 below correspond to M0–M6 in the detailed plan. Literature research and graphics-tool selection are complete; Phases 0–3 are implemented and verified. Completion is determined by the deliverables below and the acceptance criteria in Section 6.
+**EN:** The project proceeds through seven phases. Phases 0–6 below correspond to M0–M6 in the detailed plan. Literature research and graphics-tool selection are complete; Phases 0–4 are implemented and verified. Completion is determined by the deliverables below and the acceptance criteria in Section 6.
 
 | Phase / Faz | Work / Çalışma | Deliverable / Çıktı |
 | --- | --- | --- |
@@ -25,9 +25,9 @@ Status / Durum: Phases 0–3 complete; Phase 4 next / Faz 0–3 tamamlandı; sı
 
 ### Implementation approval and current scope / Uygulama onayı ve mevcut kapsam
 
-**TR:** Kullanıcı 2026-09-30 tarihinde “Başla” diyerek uygulamayı başlattı; iki “Devam et” isteğiyle Faz 2 ve Faz 3'e geçildi. Faz 0–3 tamamlandı; sonraki çalışma Faz 4'te matematiksel veri analizidir. Bütün proje değişiklikleri `mahler-project/` içinde yapılır; GitHub yayını ayrıca kullanıcıyla kesinleştirilecek.
+**TR:** Kullanıcı 2026-09-30 tarihinde “Başla” diyerek uygulamayı başlattı; sonraki “Devam et” istekleriyle Faz 2–4 tamamlandı. Sıradaki çalışma Faz 5'te grafik ve Ulam spiralidir. Bütün proje değişiklikleri `mahler-project/` içinde yapılır; GitHub yayını ayrıca kullanıcıyla kesinleştirilecek.
 
-**EN:** The user started implementation with “Başla” on 2026-09-30 and continued into Phases 2 and 3 with two “Devam et” requests. Phases 0–3 are complete; Phase 4 adds mathematical data analysis. All project changes stay in `mahler-project/`; GitHub publication will be confirmed separately.
+**EN:** The user started implementation with “Başla” on 2026-09-30 and continued through Phases 2–4 with subsequent “Devam et” requests. Phase 5 adds figures and Ulam spirals. All project changes stay in `mahler-project/`; GitHub publication will be confirmed separately.
 
 ## 1. Purpose / Amaç
 
@@ -205,13 +205,13 @@ mahler-project/
 
 ### M4 — Mathematical analyses / Matematiksel analizler
 
-- [ ] **TR:** Basamak grubuna göre erkenci adedi, oranı ve frekans dağılımı. **EN:** Counts, proportions, and frequency distributions by digit length.
-- [ ] **TR:** İlk görünüm konumları, erkencilik mesafeleri ve uç örnekler. **EN:** First-occurrence positions, advance distances, and extreme examples.
-- [ ] **TR:** Aynı basamak gruplarında asal ve bileşik sayıların karşılaştırılması. **EN:** Compare prime and composite targets within matching digit-length groups.
-- [ ] **TR:** Palindrom, lasa ve Fibonacci alt kümelerinin incelenmesi. **EN:** Examine palindrome, emirp, and Fibonacci subsets.
-- [ ] **TR:** Rapordaki basamak kurallarını önerme veya hipotez olarak ele alıp doğrulamak. **EN:** Validate legacy digit rules as propositions or hypotheses.
-- [ ] **TR:** İsteğe bağlı rakam ve kısa blok dağılımını ayrı ölçütlerle incelemek. **EN:** Optionally study digit and short-block distributions as separate metrics.
-- [ ] **TR:** Kaynak uzunluğu, geçilen sınır sayısı, elde zinciri ve döndürme tanıkları için özetler üretmek. **EN:** Aggregate source widths, crossed-boundary counts, carry chains, and rotation certificates.
+- [x] **TR:** Basamak grubuna göre erkenci adedi, oranı ve frekans dağılımı. **EN:** Counts, proportions, and frequency distributions by digit length.
+- [x] **TR:** İlk görünüm konumları, erkencilik mesafeleri ve uç örnekler. **EN:** First-occurrence positions, advance distances, and extreme examples.
+- [x] **TR:** Aynı basamak gruplarında asal ve bileşik sayıların karşılaştırılması. **EN:** Compare prime and composite targets within matching digit-length groups.
+- [x] **TR:** Palindrom, emirp ve Fibonacci alt kümelerinin incelenmesi. **EN:** Examine palindrome, emirp, and Fibonacci subsets.
+- [x] **TR:** Rapordaki basamak kurallarını önerme veya hipotez olarak ele alıp doğrulamak. **EN:** Validate legacy digit rules as propositions or hypotheses.
+- [x] **TR:** İsteğe bağlı rakam ve kısa blok dağılımını ayrı ölçütlerle incelemek. **EN:** Optionally study digit and short-block distributions as separate metrics.
+- [x] **TR:** Kaynak uzunluğu, geçilen sınır sayısı, elde zinciri ve döndürme tanıkları için özetler üretmek. **EN:** Aggregate source widths, crossed-boundary counts, carry chains, and rotation certificates.
 
 **Acceptance / Kabul:** TR — Her tabloda aralık, payda ve tanım açık olmalı; sonlu deney sonuçları genel matematiksel kanıt gibi sunulmamalı. EN — Each table states its range, denominator, and definitions; finite experiments are not presented as general mathematical proofs.
 
@@ -326,7 +326,7 @@ is_fibonacci
 | Runtime target / Süre hedefi | Baseline measured in Phase 3; broader hardware sample needed for a release threshold / İlk ölçüm Faz 3'te yapıldı; sürüm eşiği için daha geniş cihaz örnekleri gerekir |
 | Schedule / Takvim | Estimate after M1–M2; milestones determine order / M1–M2 sonrası tahmin et; sıra aşamalara göre |
 
-**Next step / Sonraki adım:** TR — Faz 4: frekans dağılımı, asallık, özel kümeler, döndürme ve elde etkilerinin analizi. EN — Phase 4: investigate frequency distributions, primality, special subsets, rotations, and carry effects.
+**Next step / Sonraki adım:** TR — Faz 5: istatistik grafikleri ve Ulam spirali katmanlarını üretmek. EN — Phase 5: generate statistical figures and Ulam spiral layers.
 
 ## 11. Literature review / Literatür araştırması
 
@@ -531,7 +531,8 @@ Research date / Araştırma tarihi: 2026-09-30.
 - [x] **TR:** Faz 0–1 tamamlandı: sözleşme ve çalışan yazılım temeli. **EN:** Phases 0–1 complete: specification and working software foundation.
 - [x] **TR:** Faz 2 tamamlandı: doğrulanmış algoritmalar ve eski liste karşılaştırması. **EN:** Phase 2 complete: validated algorithms and archived-list comparison.
 - [x] **TR:** Faz 3 tamamlandı: veri seti, manifest ve performans ölçümleri. **EN:** Phase 3 complete: dataset, manifest, and performance measurements.
-- [ ] **TR:** Faz 4–5 tamamlandı: analiz ve grafikler. **EN:** Phases 4–5 complete: analyses and figures.
+- [x] **TR:** Faz 4 tamamlandı: matematiksel analiz, alt kümeler ve mekanizma özetleri. **EN:** Phase 4 complete: mathematical analysis, subsets, and mechanism summaries.
+- [ ] **TR:** Faz 5 tamamlandı: grafikler ve Ulam spirali. **EN:** Phase 5 complete: figures and Ulam spiral.
 - [ ] **TR:** Faz 6 tamamlandı: public yayına hazır sürüm. **EN:** Phase 6 complete: public-release-ready version.
 
 **TR:** Temel sorgular, erkencilik motorları ve toplu veri seti tamamlandı; matematiksel analiz ve araştırma grafikleri sonraki fazlardadır.
@@ -557,7 +558,7 @@ Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı 
 - **TR:** 9.999'a kadar her hedefin bütün erken konumları bağımsız örtüşmeli metin aramasıyla uyuştu. 1.000.000'a kadar her hedefin ilk konumu ve frekansı iki C++ motorunda eşleşti; seçili büyük/elde örnekleri metinle ayrıca doğrulandı. **EN:** Every early position through 9,999 agreed with independent overlapping substring search. Both C++ engines agreed on first positions and frequencies through 1,000,000; selected large/carry examples also matched direct search.
 - **TR:** Bir milyon hedefte 838.385 erkenci bulundu; bir–altı basamak grupları dış adet hedefleriyle uyuştu. **EN:** The million-target scan found 838,385 early birds; digit groups one through six matched external counts.
 - **TR:** Eski genel PDF'de 28 eksik kayıt ve 62 frekans farkı; asal PDF'de 1 eksik kayıt ve 6 frekans farkı raporlandı. Arşiv dosyaları değiştirilmedi. **EN:** The archived general PDF has 28 missing entries and 62 frequency differences; the prime PDF has one missing entry and six frequency differences. Archived files were not changed.
-- **TR:** Toplu CSV/JSON, çalışma manifesti, performans ölçümleri ve grafikler sonraki fazlardadır. **EN:** Batch CSV/JSON, a run manifest, performance measurements, and figures belong to later phases.
+- **TR:** Toplu CSV/JSON, çalışma manifesti ve performans ölçümleri Faz 3'te tamamlandı; grafikler Faz 5'tedir. **EN:** Batch CSV/JSON, a run manifest, and performance measurements completed in Phase 3; figures are Phase 5 work.
 
 ## 17. Phase 3 delivery / Faz 3 teslimi
 
@@ -568,3 +569,12 @@ Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı 
 - **TR:** CSV/JSON özetleri alan alan, bütün konum kayıtları gerçek dizi metni ve kaynak ofsetleriyle doğrulandı. Tam CSV tekrarı bayt düzeyinde eşleşti. **EN:** CSV/JSON summaries were compared field by field; every occurrence was checked against sequence text and source offsets. A repeated full CSV run matched byte for byte.
 - **TR:** 10.000, 100.000 ve 1.000.000 ölçeklerinde her motor ayrı süreçte üçer kez ölçüldü. Release ve sanitizer derlemelerinde dört test grubu geçti. **EN:** Both engines were measured in separate processes with three repeats at 10,000, 100,000, and 1,000,000. Four test groups passed in Release and sanitizer builds.
 - **TR:** Dosya boyutları, SHA-256 özetleri, deney ortamı, süre ve bellek değerleri raporda kayıtlıdır. **EN:** The report records file sizes, SHA-256 hashes, test environment, timings, and memory values.
+
+## 18. Phase 4 delivery / Faz 4 teslimi
+
+Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı kanıt: [Phase 4 analysis / Faz 4 analizi](docs/PHASE4_REPORT.md).
+
+- **TR:** `analyze` komutu basamak grubu, frekans, ilk görünüm, asal/bileşik, palindrom/emirp/Fibonacci, döndürme tanığı, sınır/elde ve blok istatistiklerini şema sürümü 1 JSON olarak üretir. **EN:** The `analyze` command produces schema-version-1 JSON for digit groups, frequencies, first appearances, prime/composite, palindrome/emirp/Fibonacci, rotation certificates, boundary/carry mechanisms, and block statistics.
+- **TR:** Her asal ve özel küme sonucu, aynı basamak grubundaki açık paydasıyla raporlandı. `1` asal/bileşik sınıfı dışında tutuldu; emirp tanımı ve blok sapması açıkça belgelendi. **EN:** Every prime and special-subset result reports an explicit denominator inside its digit group. `1` is outside prime/composite classes; emirp definition and block deviation are documented explicitly.
+- **TR:** Döndürme sertifikası 781.216 hedefi pozitif olarak sınıflandırdı; bu hedeflerin tümü erkencidir. Sertifika başarısızlığı olumsuz sınıflandırma sayılmaz; `991` bunun örneğidir. **EN:** The rotation certificate positively classifies 781,216 targets, all early. Certificate failure is not a negative classification; `991` is an example.
+- **TR:** Sonuçlar sonlu aralıkta tam sayım olarak, genel teorem ve hipotezlerden ayrı sunuldu. **EN:** Results are presented as complete finite-range enumerations, distinct from general theorems and hypotheses.

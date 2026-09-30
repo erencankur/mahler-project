@@ -20,6 +20,7 @@ constexpr std::string_view usage =
     "  mahler scan --max <number> --output <file> [--format csv|json]\n"
     "              [--occurrences <csv-file>] [--manifest <json-file>]\n"
     "  mahler benchmark --max <number> [--engine window|reconstruct] [--repeat <count>]\n"
+    "  mahler analyze --max <number> --output <json-file>\n"
     "  mahler --help\n"
     "  mahler --version\n\n"
     "Positions start at 1; the initial 0. is excluded.\n"
@@ -37,6 +38,8 @@ int main(int argc, char** argv) {
             run_scan_command(argc, argv);
         } else if (argc >= 2 && std::string_view(argv[1]) == "benchmark") {
             run_benchmark_command(argc, argv);
+        } else if (argc >= 2 && std::string_view(argv[1]) == "analyze") {
+            run_analyze_command(argc, argv);
         } else {
             if (argc != 3 && argc != 5) {
                 throw std::invalid_argument("invalid arguments; use mahler --help");

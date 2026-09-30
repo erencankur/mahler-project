@@ -8,7 +8,7 @@ target_include_directories(mahler_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/inclu
 target_compile_features(mahler_core PUBLIC cxx_std_20)
 set_target_properties(mahler_core PROPERTIES CXX_EXTENSIONS OFF)
 
-add_executable(mahler app/main.cpp app/batch.cpp)
+add_executable(mahler app/main.cpp app/batch.cpp app/analysis.cpp)
 target_link_libraries(mahler PRIVATE mahler_core)
 target_compile_definitions(mahler PRIVATE
     MAHLER_VERSION="${PROJECT_VERSION}-dev"
