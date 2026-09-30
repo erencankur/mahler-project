@@ -40,6 +40,8 @@ Depo kökünde çalıştır:
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 ctest --test-dir build --output-on-failure
+cmake --install build --prefix /tmp/mahler-install
+/tmp/mahler-install/bin/mahler digit 2020
 ```
 
 ## Kullanım
@@ -114,6 +116,10 @@ ctest --test-dir build-sanitize --output-on-failure
 - [Faz 2 doğrulaması ve eski listelerin karşılaştırması](docs/PHASE2_REPORT.md)
 - [Faz 3 veri seti, sağlama toplamları ve ölçümleri](docs/PHASE3_REPORT.md)
 - [Faz 4 matematiksel analiz ve örnekler](docs/PHASE4_REPORT.md)
+- [Faz 5 grafikler, geometri, algoritmalar ve yorum](docs/PHASE5_REPORT.md)
+- [v0.1.0 yayın kontrol listesi](docs/RELEASE_CHECKLIST.md)
+- [Katkı rehberi](CONTRIBUTING.md)
+- [Sürüm notları](CHANGELOG.md)
 - [OEIS A033307: Champernowne rakamları](https://oeis.org/A033307)
 - [OEIS A117804: doğal konumlar](https://oeis.org/A117804)
 - [OEIS A116700: erkenci sayılar](https://oeis.org/A116700)
@@ -122,4 +128,4 @@ Eski matematik çalışması kardeş `../legacy-math-folders/` dizininde korunur
 
 ## Sürüm ve lisans durumu
 
-Bu, `0.1.0` için geliştirme temelidir; araştırma sürümü henüz tamamlanmadı. Public yayından önce lisans seçilecek; şu anda açık kaynak kullanım lisansı verilmiş değildir.
+Bu depo public olsa da `v0.1.0`, lisansı, imzalı etiketi ve GitHub Release’i oluşturulana kadar sürüm adayıdır. Şu anda açık kaynak yeniden kullanım lisansı verilmiş değildir. Kalan yayın kararı [yayın kontrol listesinde](docs/RELEASE_CHECKLIST.md) kayıtlıdır.

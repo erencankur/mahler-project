@@ -40,6 +40,8 @@ Run from the repository root:
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 ctest --test-dir build --output-on-failure
+cmake --install build --prefix /tmp/mahler-install
+/tmp/mahler-install/bin/mahler digit 2020
 ```
 
 ## Usage
@@ -115,6 +117,9 @@ ctest --test-dir build-sanitize --output-on-failure
 - [Phase 3 dataset, checksums, and measurements](docs/PHASE3_REPORT.md)
 - [Phase 4 mathematical analysis and examples](docs/PHASE4_REPORT.md)
 - [Phase 5 figures, geometry, algorithms, and interpretation](docs/PHASE5_REPORT.md)
+- [v0.1.0 release checklist](docs/RELEASE_CHECKLIST.md)
+- [Contributing](CONTRIBUTING.md)
+- [Changelog](CHANGELOG.md)
 - [OEIS A033307: Champernowne digits](https://oeis.org/A033307)
 - [OEIS A117804: natural positions](https://oeis.org/A117804)
 - [OEIS A116700: early-bird numbers](https://oeis.org/A116700)
@@ -123,4 +128,4 @@ The previous mathematical study is retained in the sibling `../legacy-math-folde
 
 ## Release status and licensing
 
-This is the development foundation for `0.1.0`, not a completed research release. A license will be selected before public release; no open-source license has been granted yet.
+This repository is public, but `v0.1.0` remains a release candidate until its license, annotated tag, and GitHub Release are created. No open-source reuse license has been granted yet. The remaining release decision is documented in the [release checklist](docs/RELEASE_CHECKLIST.md).

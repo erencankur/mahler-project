@@ -31,7 +31,7 @@ check(0 "{\"schema_version\":1,\"number\":\"1029360799201087511\",\"digit_count\
 check(0 "{\"schema_version\":1,\"number\":\"9910\",\"digit_count\":4,\"natural_position\":\"38530\",\"first_position\":\"188\",\"is_early\":true,\"early_frequency\":4,\"advance_digits\":\"38342\"}\n"
     early 9910 --format json)
 check(0 "number: 10\nnatural_position: 10\nfirst_position: 10\nis_early: false\nearly_frequency: 0\nadvance_digits: 0\n" early 10)
-check(0 "mahler 0.1.0-dev\n" --version)
+check(0 "mahler 0.1.0\n" --version)
 check(2 "" digit 0)
 check(2 "" early 0)
 check(2 "" early 1000001)

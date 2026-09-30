@@ -227,12 +227,12 @@ mahler-project/
 
 ### M6 — Documentation and public release / Belgeler ve public yayın
 
-- [ ] **TR:** İngilizce `README.md` ve Türkçe `README.tr.md` hazırlamak; aralarında bağlantı vermek. **EN:** Prepare English `README.md` and Turkish `README.tr.md` with reciprocal links.
-- [ ] **TR:** Tanımlar, algoritmalar, doğrulama, bulgular ve sınırlamalar için iki dilde belgeler yazmak. **EN:** Write bilingual documentation for definitions, algorithms, validation, findings, and limitations.
-- [ ] **TR:** Temiz macOS kurulumundan derleme, test ve örnek analiz akışını doğrulamak. **EN:** Verify build, tests, and an example analysis from a clean macOS setup.
-- [ ] **TR:** macOS derleme ve test iş akışı eklemek. **EN:** Add a macOS build-and-test workflow.
-- [ ] **TR:** Kaynaklar, lisans, katkı yönergeleri ve sürüm notlarını tamamlamak. **EN:** Complete references, licensing, contribution guidance, and release notes.
-- [ ] **TR:** Public yayın öncesinde depoya girecek dosyaları kontrol etmek ve yayın adımını kullanıcıyla kesinleştirmek. **EN:** Review release contents and confirm the publication step with the user.
+- [x] **TR:** İngilizce `README.md` ve Türkçe `README.tr.md` hazırlamak; aralarında bağlantı vermek. **EN:** Prepare English `README.md` and Turkish `README.tr.md` with reciprocal links.
+- [x] **TR:** Tanımlar, algoritmalar, doğrulama, bulgular ve sınırlamalar için iki dilde belgeler yazmak. **EN:** Write bilingual documentation for definitions, algorithms, validation, findings, and limitations.
+- [x] **TR:** Temiz macOS kurulumundan derleme, test ve örnek analiz akışını doğrulamak. **EN:** Verify build, tests, and an example analysis from a clean macOS setup.
+- [x] **TR:** macOS derleme ve test iş akışı eklemek. **EN:** Add a macOS build-and-test workflow.
+- [ ] **TR:** Kaynaklar, lisans, katkı yönergeleri ve sürüm notlarını tamamlamak. **EN:** Complete references, licensing, contribution guidance, and release notes. Lisans seçimi proje sahibini bekliyor / License selection awaits the project owner.
+- [ ] **TR:** Public yayın öncesinde depoya girecek dosyaları kontrol etmek ve yayın adımını kullanıcıyla kesinleştirmek. **EN:** Review release contents and confirm the publication step with the user. Depo public; sürüm etiketi ve Release lisans sonrası / Repository is public; tag and Release follow licensing.
 
 **Acceptance / Kabul:** TR — `v0.1.0` başka bir kullanıcı tarafından belgelenmiş komutlarla derlenebilmeli, çalıştırılabilmeli ve seçilmiş sonuçları yeniden üretebilmeli. EN — Another user can build and run `v0.1.0` and reproduce selected results using the documented commands.
 
@@ -327,7 +327,7 @@ is_fibonacci
 | Runtime target / Süre hedefi | Baseline measured in Phase 3; broader hardware sample needed for a release threshold / İlk ölçüm Faz 3'te yapıldı; sürüm eşiği için daha geniş cihaz örnekleri gerekir |
 | Schedule / Takvim | Estimate after M1–M2; milestones determine order / M1–M2 sonrası tahmin et; sıra aşamalara göre |
 
-**Next step / Sonraki adım:** TR — Faz 6: yayın belgeleri, lisans, CI ve sürüm dosyaları. EN — Phase 6: release documentation, licensing, CI, and release assets.
+**Next step / Sonraki adım:** TR — Faz 6'yı tamamlamak için lisans tercihini kaydedip v0.1.0 etiketini ve GitHub Release'i oluşturmak. EN — To complete Phase 6, record the license choice and create the v0.1.0 tag and GitHub Release.
 
 ## 11. Literature review / Literatür araştırması
 
@@ -534,7 +534,7 @@ Research date / Araştırma tarihi: 2026-09-30.
 - [x] **TR:** Faz 3 tamamlandı: veri seti, manifest ve performans ölçümleri. **EN:** Phase 3 complete: dataset, manifest, and performance measurements.
 - [x] **TR:** Faz 4 tamamlandı: matematiksel analiz, alt kümeler ve mekanizma özetleri. **EN:** Phase 4 complete: mathematical analysis, subsets, and mechanism summaries.
 - [x] **TR:** Faz 5 tamamlandı: grafikler ve Ulam spirali. **EN:** Phase 5 complete: figures and Ulam spiral.
-- [ ] **TR:** Faz 6 tamamlandı: public yayına hazır sürüm. **EN:** Phase 6 complete: public-release-ready version.
+- [ ] **TR:** Faz 6 sürüm adayı hazır; lisans tercihi, etiket ve GitHub Release bekliyor. **EN:** Phase 6 release candidate is ready; license choice, tag, and GitHub Release remain.
 
 **TR:** Temel sorgular, erkencilik motorları ve toplu veri seti tamamlandı; matematiksel analiz ve araştırma grafikleri sonraki fazlardadır.
 

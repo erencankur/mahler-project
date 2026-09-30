@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 project(MahlerProject VERSION 0.1.0 LANGUAGES CXX)
 
+include(GNUInstallDirs)
+
 option(MAHLER_ENABLE_SANITIZERS "Enable address and undefined-behavior sanitizers" OFF)
 option(MAHLER_ENABLE_GRAPHICS "Enable libpng Ulam PNG export" OFF)
 
@@ -17,12 +19,13 @@ if(MAHLER_ENABLE_GRAPHICS)
     target_compile_definitions(mahler PRIVATE MAHLER_HAVE_PNG=1)
 endif()
 target_compile_definitions(mahler PRIVATE
-    MAHLER_VERSION="${PROJECT_VERSION}-dev"
+    MAHLER_VERSION="${PROJECT_VERSION}"
     MAHLER_COMPILER_ID="${CMAKE_CXX_COMPILER_ID}"
     MAHLER_COMPILER_VERSION="${CMAKE_CXX_COMPILER_VERSION}"
     MAHLER_BUILD_TYPE="$<CONFIG>"
     MAHLER_SANITIZERS_ENABLED=$<BOOL:${MAHLER_ENABLE_SANITIZERS}>)
 set_target_properties(mahler PROPERTIES CXX_EXTENSIONS OFF)
+install(TARGETS mahler RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 function(mahler_configure_target target)
     if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")

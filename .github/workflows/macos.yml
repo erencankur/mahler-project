@@ -1,0 +1,42 @@
+name: macOS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    name: Core C++20 build and tests
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build --parallel
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+      - name: Install and smoke test
+        run: |
+          cmake --install build --prefix "$RUNNER_TEMP/mahler-install"
+          "$RUNNER_TEMP/mahler-install/bin/mahler" digit 2020
+          "$RUNNER_TEMP/mahler-install/bin/mahler" early 9910 --format json
+
+  graphics:
+    name: Optional PNG graphics build and tests
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install libpng
+        run: brew install libpng
+      - name: Configure
+        run: cmake -S . -B build-graphics -DCMAKE_BUILD_TYPE=Release -DMAHLER_ENABLE_GRAPHICS=ON
+      - name: Build
+        run: cmake --build build-graphics --parallel
+      - name: Test
+        run: ctest --test-dir build-graphics --output-on-failure
