@@ -183,7 +183,6 @@ ctest --test-dir build-sanitize --output-on-failure
 - [Phase 3 dataset, checksums, and measurements](docs/PHASE3_REPORT.md)
 - [Phase 4 mathematical analysis and examples](docs/PHASE4_REPORT.md)
 - [Phase 5 figures, geometry, algorithms, and interpretation](docs/PHASE5_REPORT.md)
-- [v0.1.0 release checklist](docs/RELEASE_CHECKLIST.md)
 - [Contributing](CONTRIBUTING.md)
 - [Changelog](CHANGELOG.md)
 - [OEIS A033307: Champernowne digits](https://oeis.org/A033307)
@@ -194,4 +193,4 @@ The previous mathematical study is retained in the sibling `../legacy-math-folde
 
 ## Release status and licensing
 
-Mahler Project `v0.1.0` is released under the [MIT License](LICENSE). The tagged GitHub Release, clean-build evidence, and included source/figure assets are documented in the [release checklist](docs/RELEASE_CHECKLIST.md) and [release notes](docs/RELEASE_NOTES_v0.1.0.md).
+Mahler Project `v0.1.0` is released under the [MIT License](LICENSE). The tagged release is available on [GitHub](https://github.com/erencankur/mahler-project/releases/tag/v0.1.0).

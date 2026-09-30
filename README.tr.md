@@ -183,7 +183,6 @@ ctest --test-dir build-sanitize --output-on-failure
 - [Faz 3 veri seti, sağlama toplamları ve ölçümleri](docs/PHASE3_REPORT.md)
 - [Faz 4 matematiksel analiz ve örnekler](docs/PHASE4_REPORT.md)
 - [Faz 5 grafikler, geometri, algoritmalar ve yorum](docs/PHASE5_REPORT.md)
-- [v0.1.0 yayın kontrol listesi](docs/RELEASE_CHECKLIST.md)
 - [Katkı rehberi](CONTRIBUTING.md)
 - [Sürüm notları](CHANGELOG.md)
 - [OEIS A033307: Champernowne rakamları](https://oeis.org/A033307)
@@ -194,4 +193,4 @@ Eski matematik çalışması kardeş `../legacy-math-folders/` dizininde korunur
 
 ## Sürüm ve lisans durumu
 
-Mahler Project `v0.1.0`, [MIT Lisansı](LICENSE) ile yayınlanır. Etiketli GitHub Release, temiz derleme kanıtı ve dahil edilen kaynak/grafik dosyaları [yayın kontrol listesinde](docs/RELEASE_CHECKLIST.md) ve [sürüm notlarında](docs/RELEASE_NOTES_v0.1.0.md) açıklanır.
+Mahler Project `v0.1.0`, [MIT Lisansı](LICENSE) ile yayınlanır. Etiketli yayın [GitHub'da](https://github.com/erencankur/mahler-project/releases/tag/v0.1.0) bulunur.
