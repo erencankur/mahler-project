@@ -8,7 +8,7 @@ A C++20 mathematical research project for the decimal Champernowne constant, als
 0.123456789101112131415...
 ```
 
-The working foundation provides direct digit lookup and natural-position queries. The planned research examines early-bird status and early-occurrence frequencies for every integer from 1 through 1,000,000, with prime analysis and Ulam spiral figures.
+The C++ program provides direct digit lookup, natural-position queries, and early-bird searches for targets through 1,000,000. Prime analysis and Ulam spiral figures are later phases.
 
 ## Current capabilities
 
@@ -17,8 +17,10 @@ The working foundation provides direct digit lookup and natural-position queries
 - Find a positive integer's natural starting position, with checked overflow.
 - Generate bounded prefixes through the C++ library for subsequent validation and scanning.
 - Produce text or JSON query output.
+- Compute first occurrence, early-bird status, early frequency, and advance distance with `early`.
+- Cross-check numeric-window scanning against an independent per-target reconstruction engine.
 
-Early-bird classification, first-occurrence searches, frequencies, batch CSV/JSON exports, and figures are **not implemented yet**. `inspect` currently reports natural position only. An absent early-bird field does not mean the number is punctual.
+Batch CSV/JSON exports, aggregate analysis, and figures are **not implemented yet**. `inspect` reports natural position only; use `early` for early-bird properties.
 
 ## Build on macOS
 
@@ -51,6 +53,9 @@ ctest --test-dir build --output-on-failure
 ./build/mahler inspect 9910 --format json
 # {"schema_version":1,"number":"9910","digit_count":4,"natural_position":"38530"}
 
+./build/mahler early 9910 --format json
+# {"schema_version":1,"number":"9910","digit_count":4,"natural_position":"38530","first_position":"188","is_early":true,"early_frequency":4,"advance_digits":"38342"}
+
 ./build/mahler --help
 ./build/mahler --version
 ```
@@ -59,7 +64,7 @@ Positions start at 1 and exclude the initial `0.`. JSON serializes position and 
 
 ## Validation
 
-Core checks cover report examples, every position in an independently constructed prefix through 10,000, large positions and natural-position overflow, and the 5,888,896-digit prefix through 1,000,000. CLI checks cover exact text/JSON outputs, invalid input, and exit codes. These checks validate foundational queries, **not a million-target early-bird scan**.
+Core checks cover an independently constructed prefix through 10,000, large positions, and overflow. Early-bird checks compare all early positions against direct substring searches through 9,999, compare both engines' first positions and frequencies for every target through one million, and check selected carry cases independently. The one-million scan found **838,385** early birds. CLI checks cover exact text/JSON outputs, invalid input, and exit codes. [Phase 2 report](docs/PHASE2_REPORT.md) gives the results and archived-list comparison.
 
 To run additional memory and arithmetic checks with Apple Clang:
 
@@ -73,11 +78,12 @@ ctest --test-dir build-sanitize --output-on-failure
 
 - [Mathematical and API specification](docs/en/SPECIFICATION.md)
 - [Bilingual roadmap, research references, and graphics decisions](ROADMAP.md)
+- [Phase 2 verification and archived-list comparison](docs/PHASE2_REPORT.md)
 - [OEIS A033307: Champernowne digits](https://oeis.org/A033307)
 - [OEIS A117804: natural positions](https://oeis.org/A117804)
 - [OEIS A116700: early-bird numbers](https://oeis.org/A116700)
 
-The previous mathematical study is retained in the sibling `../legacy-math-project/` archive. The application has no runtime dependency on that archive and does not modify it.
+The previous mathematical study is retained in the sibling `../legacy-math-folders/` archive. The application has no runtime dependency on that archive and does not modify it.
 
 ## Release status and licensing
 

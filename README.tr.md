@@ -8,7 +8,7 @@ Ondalık Champernowne sabiti, diğer adıyla Mahler sayısı, üzerine C++20 ile
 0.123456789101112131415...
 ```
 
-Çalışan yazılım temeli, doğrudan rakam sorgusu ve doğal konum hesabı sunar. Araştırmanın devamında 1–1.000.000 arasındaki bütün sayıların erkenciliği ve erken görünüm frekansları, asal sayı analizleri ve Ulam spirali grafikleri incelenecek.
+C++ uygulaması doğrudan rakam sorgusu, doğal konum hesabı ve 1–1.000.000 aralığındaki hedefler için erkencilik araması sunar. Asal sayı analizleri ve Ulam spirali grafikleri sonraki fazlardadır.
 
 ## Mevcut özellikler
 
@@ -17,8 +17,10 @@ Ondalık Champernowne sabiti, diğer adıyla Mahler sayısı, üzerine C++20 ile
 - Taşma denetimiyle pozitif sayının doğal başlangıç konumunu hesaplama.
 - Sonraki doğrulama ve taramalar için C++ kütüphanesinden sınırlı önek üretme.
 - Metin veya JSON sorgu çıktısı.
+- `early` komutuyla ilk görünüm, erkencilik, erken frekans ve erkencilik mesafesi hesabı.
+- Sayısal pencere taramasını bağımsız hedef başına yeniden kurma motoruyla karşılaştırma.
 
-Erkencilik, ilk görünüm araması, frekanslar, toplu CSV/JSON çıktıları ve grafikler **henüz uygulanmadı**. `inspect` şimdilik yalnızca doğal konumu gösterir. Erkencilik alanının bulunmaması, sayının erkenci olmadığı anlamına gelmez.
+Toplu CSV/JSON çıktıları, toplu analiz ve grafikler **henüz uygulanmadı**. `inspect` yalnızca doğal konumu gösterir; erkencilik bilgileri için `early` kullanılır.
 
 ## macOS üzerinde derleme
 
@@ -51,6 +53,9 @@ ctest --test-dir build --output-on-failure
 ./build/mahler inspect 9910 --format json
 # {"schema_version":1,"number":"9910","digit_count":4,"natural_position":"38530"}
 
+./build/mahler early 9910 --format json
+# {"schema_version":1,"number":"9910","digit_count":4,"natural_position":"38530","first_position":"188","is_early":true,"early_frequency":4,"advance_digits":"38342"}
+
 ./build/mahler --help
 ./build/mahler --version
 ```
@@ -59,7 +64,7 @@ Konumlar 1'den başlar; baştaki `0.` sayılmaz. JSON'da konumlar ve hedef/kayna
 
 ## Doğrulama
 
-Çekirdek kontrolleri rapordaki örnekleri, 10.000'e kadar bağımsız oluşturulmuş öneğin her konumunu, büyük konumları ve doğal konum taşmalarını, ayrıca 1.000.000'a kadar üretilen 5.888.896 rakamlık öneği kapsar. Komut satırı kontrolleri metin/JSON çıktısını, geçersiz girdileri ve çıkış kodlarını sınar. Bunlar temel sorguların doğrulamasıdır; **bir milyon sayı için erkencilik taraması henüz yapılmadı**.
+Çekirdek kontrolleri 10.000'e kadar bağımsız oluşturulmuş öneği, büyük konumları ve taşmaları kapsar. Erkencilik kontrolleri 9.999'a kadar bütün erken konumları doğrudan metin aramasıyla, bir milyona kadar her hedefin ilk konumunu ve frekansını iki C++ motoruyla karşılaştırır; seçili elde örnekleri ayrıca bağımsız aranır. Bir milyonluk taramada **838.385** erkenci sayı bulundu. Komut satırı çıktıları ve hataları da sınandı. Ayrıntılar [Faz 2 raporunda](docs/PHASE2_REPORT.md).
 
 Apple Clang ile ek bellek ve aritmetik kontrolleri:
 
@@ -73,11 +78,12 @@ ctest --test-dir build-sanitize --output-on-failure
 
 - [Matematiksel tanımlar ve API sözleşmesi](docs/tr/SPECIFICATION.md)
 - [İki dilli yol haritası, araştırma kaynakları ve grafik kararları](ROADMAP.md)
+- [Faz 2 doğrulaması ve eski listelerin karşılaştırması](docs/PHASE2_REPORT.md)
 - [OEIS A033307: Champernowne rakamları](https://oeis.org/A033307)
 - [OEIS A117804: doğal konumlar](https://oeis.org/A117804)
 - [OEIS A116700: erkenci sayılar](https://oeis.org/A116700)
 
-Eski matematik çalışması kardeş `../legacy-math-project/` dizininde korunur. Uygulama çalışırken bu arşive ihtiyaç duymaz ve arşivi değiştirmez.
+Eski matematik çalışması kardeş `../legacy-math-folders/` dizininde korunur. Uygulama çalışırken bu arşive ihtiyaç duymaz ve arşivi değiştirmez.
 
 ## Sürüm ve lisans durumu
 

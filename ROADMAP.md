@@ -1,13 +1,13 @@
 # Mahler Project Roadmap / Mahler Projesi Yol Haritası
 
 Date / Tarih: 2026-09-30  
-Status / Durum: Phases 0–1 complete; Phase 2 next / Faz 0–1 tamamlandı; sıradaki çalışma Faz 2
+Status / Durum: Phases 0–2 complete; Phase 3 next / Faz 0–2 tamamlandı; sıradaki çalışma Faz 3
 
 ## Phase overview / Faz özeti
 
-**TR:** Proje yedi fazda ilerleyecek. Aşağıdaki Faz 0–6, ayrıntılardaki M0–M6 ile aynıdır. Literatür araştırması ve grafik araçlarının seçimi tamamlandı; Faz 0 ve Faz 1 uygulandı ve doğrulandı. Her fazın tamamlanması, aşağıdaki çıktılar ve Bölüm 6'daki kabul ölçütleriyle değerlendirilecek.
+**TR:** Proje yedi fazda ilerleyecek. Aşağıdaki Faz 0–6, ayrıntılardaki M0–M6 ile aynıdır. Literatür araştırması ve grafik araçlarının seçimi tamamlandı; Faz 0–2 uygulandı ve doğrulandı. Her fazın tamamlanması, aşağıdaki çıktılar ve Bölüm 6'daki kabul ölçütleriyle değerlendirilecek.
 
-**EN:** The project proceeds through seven phases. Phases 0–6 below correspond to M0–M6 in the detailed plan. Literature research and graphics-tool selection are complete; Phases 0 and 1 are implemented and verified. Completion is determined by the deliverables below and the acceptance criteria in Section 6.
+**EN:** The project proceeds through seven phases. Phases 0–6 below correspond to M0–M6 in the detailed plan. Literature research and graphics-tool selection are complete; Phases 0–2 are implemented and verified. Completion is determined by the deliverables below and the acceptance criteria in Section 6.
 
 | Phase / Faz | Work / Çalışma | Deliverable / Çıktı |
 | --- | --- | --- |
@@ -25,9 +25,9 @@ Status / Durum: Phases 0–1 complete; Phase 2 next / Faz 0–1 tamamlandı; sı
 
 ### Implementation approval and current scope / Uygulama onayı ve mevcut kapsam
 
-**TR:** Kullanıcı 2026-09-30 tarihinde “Başla” diyerek Faz 0 ve Faz 1'in uygulamasını onayladı. C++20/CMake temeli, matematik/API sözleşmesi, komut satırı, temel doğrulamalar ve iki dilli başlangıç belgeleri tamamlandı. Sonraki çalışma Faz 2'de ilk görünüm, erkencilik ve frekans hesaplarıdır. Bütün proje değişiklikleri `mahler-project/` içinde yapılır; GitHub yayını ayrıca kullanıcıyla kesinleştirilecek.
+**TR:** Kullanıcı 2026-09-30 tarihinde “Başla” diyerek uygulamayı başlattı ve ardından “Devam et” diyerek Faz 2'ye geçilmesini istedi. Faz 0–2 tamamlandı; sonraki çalışma Faz 3'te yeniden üretilebilir toplu veri seti ve ölçümlerdir. Bütün proje değişiklikleri `mahler-project/` içinde yapılır; GitHub yayını ayrıca kullanıcıyla kesinleştirilecek.
 
-**EN:** The user approved implementing Phases 0 and 1 on 2026-09-30. The C++20/CMake foundation, mathematical/API specification, CLI, foundational checks, and bilingual initial documentation are complete. Phase 2 adds first occurrence, early-bird status, and frequency calculations. All project changes stay in `mahler-project/`; GitHub publication will be confirmed separately.
+**EN:** The user started implementation with “Başla” on 2026-09-30 and then requested Phase 2 with “Devam et.” Phases 0–2 are complete; Phase 3 adds a reproducible batch dataset and measurements. All project changes stay in `mahler-project/`; GitHub publication will be confirmed separately.
 
 ## 1. Purpose / Amaç
 
@@ -49,9 +49,9 @@ Status / Durum: Phases 0–1 complete; Phase 2 next / Faz 0–1 tamamlandı; sı
 | Graphics / Grafikler | C++ aggregates + Gnuplot charts; C++ SVG/libpng Ulam renderer / C++ özetleri + Gnuplot grafikler; C++ SVG/libpng Ulam çizimi |
 | Publication / Yayın | Public GitHub repository, after release preparation / Sürüm hazırlığından sonra public GitHub deposu |
 
-**TR:** Bütün proje değişiklikleri `mahler-project/` içinde yapılacak. Kardeş dizin `../legacy-math-project/` salt okunur kaynak arşividir; içindeki dosyalar değiştirilmeyecek, yeniden adlandırılmayacak veya taşınmayacak. İlk sürümün çalışması için Python gerekmeyecek. Diğer platformlar, başka tabanlar, başka sayı dizileri ve masaüstü arayüzü sonraki sürümlere bırakılacak.
+**TR:** Bütün proje değişiklikleri `mahler-project/` içinde yapılacak. Kardeş dizin `../legacy-math-folders/` salt okunur kaynak arşividir; içindeki dosyalar değiştirilmeyecek, yeniden adlandırılmayacak veya taşınmayacak. İlk sürümün çalışması için Python gerekmeyecek. Diğer platformlar, başka tabanlar, başka sayı dizileri ve masaüstü arayüzü sonraki sürümlere bırakılacak.
 
-**EN:** All project changes will stay inside `mahler-project/`. The sibling directory `../legacy-math-project/` is a read-only source archive: its files will not be modified, renamed, or moved. Python will not be required to run the first release. Other platforms, numeral bases, source sequences, and a desktop interface are deferred to later releases.
+**EN:** All project changes will stay inside `mahler-project/`. The sibling directory `../legacy-math-folders/` is a read-only source archive: its files will not be modified, renamed, or moved. Python will not be required to run the first release. Other platforms, numeral bases, source sequences, and a desktop interface are deferred to later releases.
 
 ## 3. Mathematical specification / Matematiksel tanımlar
 
@@ -183,12 +183,12 @@ mahler-project/
 
 ### M2 — Early-bird engine and legacy comparison / Erkenci sayı motoru ve eski verilerin karşılaştırılması
 
-- [ ] **TR:** İlk görünüm, erken frekans ve kayan pencere taramasını uygulamak. **EN:** Implement first occurrence, early frequency, and the rolling-window scan.
-- [ ] **TR:** Küçük aralıklarda bağımsız metin aramasıyla sayı ve konum bazında karşılaştırmak. **EN:** Compare target values and positions against independent substring searches on small ranges.
-- [ ] **TR:** 1–9.999 aralığındaki eski listelerle karşılaştırma raporu oluşturmak. **EN:** Produce a comparison report for the legacy lists covering 1–9,999.
-- [ ] **TR:** Eksik kayıt, yinelenen konum ve yanlış frekans nedenlerini örneklerle açıklamak. **EN:** Explain missing entries, duplicated positions, and incorrect frequencies with examples.
-- [ ] **TR:** R11 tabanlı yeniden kurma motorunun tamlığını, elde durumlarını ve tüm konumların tekilleştirilmesini sınamak; doğrulanmayan sürümü deneysel tutmak. **EN:** Investigate completeness, carry handling, and position deduplication for the R11-based engine; keep unverified versions experimental.
-- [ ] **TR:** `991`, `919`, `9193`, `9199`, `11121`, `9090`, `900900` örneklerini bağımsız aramayla doğrulamak. **EN:** Validate these rotation/carry and negative-classification examples with independent searches.
+- [x] **TR:** İlk görünüm, erken frekans ve kayan pencere taramasını uygulamak. **EN:** Implement first occurrence, early frequency, and the rolling-window scan.
+- [x] **TR:** Küçük aralıklarda bağımsız metin aramasıyla sayı ve konum bazında karşılaştırmak. **EN:** Compare target values and positions against independent substring searches on small ranges.
+- [x] **TR:** 1–9.999 aralığındaki eski listelerle karşılaştırma raporu oluşturmak. **EN:** Produce a comparison report for the legacy lists covering 1–9,999.
+- [x] **TR:** Eksik kayıt, yinelenen konum ve yanlış frekans nedenlerini örneklerle açıklamak. **EN:** Explain missing entries, duplicated positions, and incorrect frequencies with examples.
+- [x] **TR:** R11 tabanlı yeniden kurma motorunun tamlığını, elde durumlarını ve tüm konumların tekilleştirilmesini sınamak; doğrulanmayan sürümü deneysel tutmak. **EN:** Investigate completeness, carry handling, and position deduplication for the R11-based engine; keep unverified versions experimental.
+- [x] **TR:** `991`, `919`, `9193`, `9199`, `11121`, `9090`, `900900` örneklerini bağımsız aramayla doğrulamak. **EN:** Validate these rotation/carry and negative-classification examples with independent searches.
 
 **Acceptance / Kabul:** TR — 1, 2, 3 ve 4 basamaklı erkenci adetleri sırasıyla `0, 45, 630, 6896` olmalı; bağımsız referans ile frekanslar ve konumlar uyuşmalı. EN — Early-bird counts for 1, 2, 3, and 4 digits are `0, 45, 630, 6896`; frequencies and positions agree with the independent reference.
 
@@ -243,15 +243,16 @@ mahler-project/
 ```sh
 mahler digit 2020
 mahler inspect 9910
+mahler early 9910 --format json
 mahler scan --max 1000000 --format csv --output results/summary.csv
 mahler scan --max 1000000 --format json --output results/summary.json
 mahler summarize results/summary.csv
 mahler ulam --max 10000 --layer early --output figures/ulam-early.svg
 ```
 
-**TR:** Bunlar planlanan komutlardır; henüz uygulanmadılar. Konum dışa aktarımı ve grafik komutlarının kesin seçenekleri ilgili aşamada belirlenecek. Komut isimleri ve makineye yönelik alan adları İngilizce olacak; kullanım belgeleri iki dilde sunulacak.
+**TR:** `digit`, `inspect` ve `early` çalışıyor. `scan`, `summarize` ve `ulam` planlanan komutlardır. Konum dışa aktarımı ve grafik komutlarının kesin seçenekleri ilgili aşamada belirlenecek. Komut isimleri ve makineye yönelik alan adları İngilizce olacak; kullanım belgeleri iki dilde sunulacak.
 
-**EN:** These commands are proposed, not implemented. Exact occurrence-export and graphics options will be settled in their milestones. Command names and machine-readable field names will be English; usage documentation will be bilingual.
+**EN:** `digit`, `inspect`, and `early` are implemented. `scan`, `summarize`, and `ulam` remain proposed commands. Exact occurrence-export and graphics options will be settled in their milestones. Command names and machine-readable field names will be English; usage documentation will be bilingual.
 
 ### Summary fields / Özet alanları
 
@@ -310,7 +311,7 @@ is_fibonacci
 - [OEIS A132133 — Counts of punctual birds and corresponding early-bird counts](https://oeis.org/A132133).
 - [OEIS A131881 — Punctual birds, complement of early birds](https://oeis.org/A131881).
 - [Kurt Mahler — On the decimal expansion of certain irrational numbers, 1937 reprint](https://ems.press/books/dms/252/4981).
-- **TR:** `../legacy-math-project/` içindeki özgün rapor, PDF listeleri ve Ulam görselleri. **EN:** Original report, PDF lists, and Ulam figures in `../legacy-math-project/`.
+- **TR:** `../legacy-math-folders/` içindeki özgün rapor, PDF listeleri ve Ulam görselleri. **EN:** Original report, PDF lists, and Ulam figures in `../legacy-math-folders/`.
 
 ## 10. Decisions deferred to implementation / Uygulamada kesinleştirilecek kararlar
 
@@ -324,7 +325,7 @@ is_fibonacci
 | Runtime target / Süre hedefi | Set after baseline measurements / İlk ölçümlerden sonra belirle |
 | Schedule / Takvim | Estimate after M1–M2; milestones determine order / M1–M2 sonrası tahmin et; sıra aşamalara göre |
 
-**Next step / Sonraki adım:** TR — Faz 2: bağımsız referans araması ve erkenci sayı motorunu geliştirmek. EN — Phase 2: develop independent reference searches and the early-bird engine.
+**Next step / Sonraki adım:** TR — Faz 3: `scan --max` toplu çıktıları, çalışma manifesti ve süre/bellek ölçümleri. EN — Phase 3: `scan --max` batch exports, run manifest, and runtime/memory measurements.
 
 ## 11. Literature review / Literatür araştırması
 
@@ -391,9 +392,9 @@ Research date / Araştırma tarihi: 2026-09-30.
 | 5 | 73,059 | 90,000 |
 | 6 | 757,755 | 900,000 |
 
-**TR:** R9/R10 değerlerinin toplamı `838385` eder. `1000000` erkenci olmayan bir 10 kuvvetidir; dolayısıyla `1..1000000` için beklenen toplam erkenci adet **838.385**, oran **%83,8385**'tir. Bunlar C++ taramasının üretmiş olduğu sonuçlar değil, dış kaynaktan alınan kabul hedefleridir. İlk görünüm ayrıca R7, erkenci sırası üzerinden R8 ile denetlenecek. [R7–R10]
+**TR:** R9/R10 değerlerinin toplamı `838385` eder. `1000000` erkenci olmayan bir 10 kuvvetidir; `1..1000000` için C++ taraması da **838.385** erkenci, yani **%83,8385** buldu. Dış hedef ve hesap sonucu ayrı kaynaklardır. İlk görünüm R7, erkenci sırası üzerinden R8 ile ayrıca denetlenebilir. [R7–R10]
 
-**EN:** Summing R9/R10 yields `838385`. Since `1000000` is a non-early power of ten, the expected early count over `1..1000000` is **838,385**, or **83.8385%**. These are external acceptance targets, not outputs of an implemented C++ scan. Validate first positions against R7 and, using early-bird ranks, R8. [R7–R10]
+**EN:** Summing R9/R10 yields `838385`. Since `1000000` is a non-early power of ten, the C++ scan also found **838,385** early birds, or **83.8385%**, over `1..1000000`. The external target and computed result have distinct provenance. First positions can also be checked against R7 and, by early-bird rank, R8. [R7–R10]
 
 ## 12. Algorithm development decisions / Algoritma geliştirme kararları
 
@@ -527,12 +528,13 @@ Research date / Araştırma tarihi: 2026-09-30.
 - [x] **TR:** Araştırma sonrası işler Bölüm 6'daki ilgili fazlara birleştirildi. **EN:** Post-research tasks integrated into their phases in Section 6.
 - [x] **TR:** Kullanıcı uygulamaya başlamayı onayladı. **EN:** User approved starting implementation.
 - [x] **TR:** Faz 0–1 tamamlandı: sözleşme ve çalışan yazılım temeli. **EN:** Phases 0–1 complete: specification and working software foundation.
-- [ ] **TR:** Faz 2–5 tamamlandı: doğrulanmış algoritmalar, veri, analiz ve grafikler. **EN:** Phases 2–5 complete: validated algorithms, dataset, analyses, and figures.
+- [x] **TR:** Faz 2 tamamlandı: doğrulanmış algoritmalar ve eski liste karşılaştırması. **EN:** Phase 2 complete: validated algorithms and archived-list comparison.
+- [ ] **TR:** Faz 3–5 tamamlandı: veri, analiz ve grafikler. **EN:** Phases 3–5 complete: dataset, analyses, and figures.
 - [ ] **TR:** Faz 6 tamamlandı: public yayına hazır sürüm. **EN:** Phase 6 complete: public-release-ready version.
 
-**TR:** Temel sorgu yazılımı tamamlandı; erkenci sayı sonuçları ve araştırma grafikleri henüz üretilmedi.
+**TR:** Temel sorgular ve erkencilik motorları tamamlandı; toplu veri dosyaları ve araştırma grafikleri henüz üretilmedi.
 
-**EN:** Foundational query software is complete; early-bird results and research figures have not yet been generated.
+**EN:** Foundational queries and early-bird engines are complete; batch data files and research figures have not yet been generated.
 
 ## 15. Phase 0–1 delivery / Faz 0–1 teslimi
 
@@ -545,3 +547,12 @@ Date / Tarih: 2026-09-30.
 - **TR:** Her iki derlemede `core` ve `cli` CTest grupları geçti. Bağımsız 10.000 sayılık önek, büyük konumlar, taşmalar, hatalı girdiler ve JSON kontrolleri yapıldı. **EN:** Both builds passed the `core` and `cli` CTest suites, covering an independent prefix through 10,000, large positions, overflows, invalid inputs, and JSON outputs.
 - **TR:** Bir milyonluk önek üretiminin uzunluğu ve sonu doğrulandı; bu henüz erkencilik taraması değildir. **EN:** Million-integer prefix length and endpoint verified; this is not yet an early-bird scan.
 
+## 16. Phase 2 delivery / Faz 2 teslimi
+
+Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı kanıt: [Phase 2 verification / Faz 2 doğrulaması](docs/PHASE2_REPORT.md).
+
+- **TR:** `scan_early(maximum)` sayısal pencere motoru, `reconstruct_early_positions(m)` kaynak yeniden kurma motoru ve `early` metin/JSON komutu eklendi. **EN:** Added the numeric-window `scan_early(maximum)` engine, source reconstruction `reconstruct_early_positions(m)`, and text/JSON `early` command.
+- **TR:** 9.999'a kadar her hedefin bütün erken konumları bağımsız örtüşmeli metin aramasıyla uyuştu. 1.000.000'a kadar her hedefin ilk konumu ve frekansı iki C++ motorunda eşleşti; seçili büyük/elde örnekleri metinle ayrıca doğrulandı. **EN:** Every early position through 9,999 agreed with independent overlapping substring search. Both C++ engines agreed on first positions and frequencies through 1,000,000; selected large/carry examples also matched direct search.
+- **TR:** Bir milyon hedefte 838.385 erkenci bulundu; bir–altı basamak grupları dış adet hedefleriyle uyuştu. **EN:** The million-target scan found 838,385 early birds; digit groups one through six matched external counts.
+- **TR:** Eski genel PDF'de 28 eksik kayıt ve 62 frekans farkı; asal PDF'de 1 eksik kayıt ve 6 frekans farkı raporlandı. Arşiv dosyaları değiştirilmedi. **EN:** The archived general PDF has 28 missing entries and 62 frequency differences; the prime PDF has one missing entry and six frequency differences. Archived files were not changed.
+- **TR:** Toplu CSV/JSON, çalışma manifesti, performans ölçümleri ve grafikler sonraki fazlardadır. **EN:** Batch CSV/JSON, a run manifest, performance measurements, and figures belong to later phases.

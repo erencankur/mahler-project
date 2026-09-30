@@ -46,7 +46,7 @@ Araştırma aralığı `1≤m≤1.000.000` olarak sabittir. Önek, 1.000.000 kay
 
 ## Uygulanan kütüphane API'si
 
-Başlık dosyası: `include/mahler/sequence.hpp`. Ad alanı: `mahler`.
+Başlık dosyaları: `include/mahler/sequence.hpp` ve `include/mahler/early.hpp`. Ad alanı: `mahler`.
 
 | API | Sonuç ve sınırlar |
 | --- | --- |
@@ -55,8 +55,10 @@ Başlık dosyası: `include/mahler/sequence.hpp`. Ad alanı: `mahler`.
 | `digit_at(position)` | `1..UINT64_MAX` için 0–9 arasında rakam |
 | `natural_position(number)` | `uint64_t` içinde temsil edilebilen doğal başlangıç |
 | `make_prefix(last_integer)` | `1..1.000.000` sınırlarında `1..last_integer` birleştirmesi |
+| `scan_early(maximum)` | `1..maximum` hedefleri için sayı ile indekslenen özet kayıtlar; `1≤maximum≤1.000.000` |
+| `reconstruct_early_positions(number)` | Tek hedefin sıralı ve farklı erken konumları; `1..1.000.000` için ikinci araştırma motoru |
 
-Basamak sayısı yardımcısı dışındaki API'ler sıfır girdide `std::invalid_argument` üretir. Bir milyonun üzerindeki önek isteği `std::length_error`, temsil edilemeyen doğal konum `std::overflow_error` üretir. Bellek tahsis hataları çağırana iletilir.
+Basamak sayısı yardımcısı dışındaki API'ler sıfır girdide `std::invalid_argument` üretir. Bir milyonun üzerindeki önek/erkencilik isteği `std::length_error`, temsil edilemeyen doğal konum `std::overflow_error` üretir. Bellek tahsis hataları çağırana iletilir. `EarlyResult`, `natural_position`, `first_position`, `early_frequency` ile türetilmiş `is_early()` ve `advance_digits()` sonuçlarını içerir.
 
 `UINT64_MAX = 18446744073709551615`. Doğal başlangıcı temsil edilebilen en büyük hedef `1029360799201087511`, başlangıcı `18446744073709551599`'dur. `UINT64_MAX` konumundaki rakam, bu hedefin 16 ofsetindeki 5 rakamıdır. Doğal konum sınırını aşan hedefler, sayısal değerleri `uint64_t` içinde olsa bile reddedilir.
 
@@ -65,6 +67,7 @@ Basamak sayısı yardımcısı dışındaki API'ler sıfır girdide `std::invali
 ```text
 mahler digit <position> [--format text|json]
 mahler inspect <number> [--format text|json]
+mahler early <number> [--format text|json]  # 1..1000000
 mahler --help
 mahler --version
 ```
@@ -77,8 +80,9 @@ Varsayılan çıktı metindir. Girdiler işaret, boşluk, ayraç, kesir ve son e
 | --- | --- |
 | `digit` | `schema_version` (tam sayı), `position` (ondalık metin), `digit` (tam sayı), `source_number` (ondalık metin), `digit_offset` (tam sayı), `digit_count` (tam sayı) |
 | `inspect` | `schema_version` (tam sayı), `number` (ondalık metin), `digit_count` (tam sayı), `natural_position` (ondalık metin) |
+| `early` | `schema_version` (tam sayı), `number` (ondalık metin), `digit_count` (tam sayı), `natural_position` (ondalık metin), `first_position` (ondalık metin), `is_early` (mantıksal), `early_frequency` (tam sayı), `advance_digits` (ondalık metin) |
 
-Büyük olabilecek tam sayılar kayıpsız okunabilmeleri için ondalık metindir. Faz 1, hesaplanmadıkları için `is_early`, `first_position` ve frekans alanlarını üretmez.
+Büyük olabilecek konumlar, hedefler ve mesafeler kayıpsız okunabilmeleri için ondalık metindir. `early_frequency` sınırlı hedef aralığında tam sayıdır. `inspect` Faz 1 şemasını korur; erkencilik alanları için `early` kullanılır.
 
 ## Planlanan veri seti sözleşmesi
 
@@ -98,4 +102,4 @@ OEIS indeks kuralları her dizi için ayrı incelenecek. Baştaki sıfır ve sı
 
 Normallik asimptotik bir özelliktir. Sonlu blok sapması `delta_q(T)` ve erken frekans `E(m)` farklı ölçütlerdir. Sonlu tarama veya grafik genel normallik teoremini kanıtlamaz. Bilinen sonuçlar, yeni hesaplamalı bulgular ve hipotezler ayrı işaretlenecek.
 
-Çekirdek doğrulaması; 10.000'e kadar bağımsız metin birleştirmesi, bilinen örnek/sınırlar ve büyük konumlar için daha geniş aritmetik kullanan kapalı formül referansıyla yapılır. Yalnız test referansı Apple Clang/GCC `__uint128_t` uzantısını kullanır; uygulama standart C++20 sabit genişlikli aritmetik kullanır. Bir milyonluk önek kontrolü uzunluğu ve sonunu doğrular; erkenci adetlerini değil. Eski dosyalar salt okunur kalır.
+Çekirdek doğrulaması; 10.000'e kadar bağımsız metin birleştirmesi, bilinen örnek/sınırlar ve büyük konumlar için daha geniş aritmetik kullanan kapalı formül referansıyla yapılır. Yalnız test referansı Apple Clang/GCC `__uint128_t` uzantısını kullanır; uygulama standart C++20 sabit genişlikli aritmetik kullanır. Erkencilik doğrulaması 9.999'a kadar bütün konumları doğrudan metin aramasıyla, bir milyona kadar ilk konum ve frekansı iki motorla, seçili elde örneklerini de doğrudan aramayla karşılaştırır. Ayrıntılar [Faz 2 raporunda](../PHASE2_REPORT.md). Eski dosyalar salt okunur kalır.

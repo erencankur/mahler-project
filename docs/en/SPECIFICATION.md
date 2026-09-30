@@ -46,7 +46,7 @@ The fixed research range is `1≤m≤1,000,000`. Its prefix includes the entire 
 
 ## Implemented library API
 
-Header: `include/mahler/sequence.hpp`. Namespace: `mahler`.
+Headers: `include/mahler/sequence.hpp` and `include/mahler/early.hpp`. Namespace: `mahler`.
 
 | API | Result and limits |
 | --- | --- |
@@ -55,8 +55,10 @@ Header: `include/mahler/sequence.hpp`. Namespace: `mahler`.
 | `digit_at(position)` | Integer digit 0–9 for `1..UINT64_MAX` |
 | `natural_position(number)` | Natural start if representable as `uint64_t` |
 | `make_prefix(last_integer)` | Decimal concatenation `1..last_integer`, for `1..1,000,000` |
+| `scan_early(maximum)` | Summary records indexed by target for `1..maximum`, where `1≤maximum≤1,000,000` |
+| `reconstruct_early_positions(number)` | Sorted distinct early starts for one target, `1..1,000,000`; secondary research engine |
 
-Zero is rejected by all APIs other than the digit-width helper with `std::invalid_argument`. A prefix endpoint over one million throws `std::length_error`. A nonrepresentable natural position throws `std::overflow_error`. Allocation errors propagate to callers.
+Zero is rejected by all APIs other than the digit-width helper with `std::invalid_argument`. A prefix/early endpoint over one million throws `std::length_error`. A nonrepresentable natural position throws `std::overflow_error`. Allocation errors propagate to callers. `EarlyResult` contains `natural_position`, `first_position`, `early_frequency`, and derived `is_early()` and `advance_digits()`.
 
 `UINT64_MAX = 18446744073709551615`. The largest target with a representable natural start is `1029360799201087511`, whose start is `18446744073709551599`. The digit at `UINT64_MAX` is 5, at offset 16 within that target. A target beyond this natural-position limit is rejected even if its numeric value fits `uint64_t`.
 
@@ -65,6 +67,7 @@ Zero is rejected by all APIs other than the digit-width helper with `std::invali
 ```text
 mahler digit <position> [--format text|json]
 mahler inspect <number> [--format text|json]
+mahler early <number> [--format text|json]  # 1..1000000
 mahler --help
 mahler --version
 ```
@@ -77,8 +80,9 @@ Exit codes: 0 success; 1 runtime/output error; 2 usage or invalid input; 3 input
 | --- | --- |
 | `digit` | `schema_version` (integer), `position` (decimal string), `digit` (integer), `source_number` (decimal string), `digit_offset` (integer), `digit_count` (integer) |
 | `inspect` | `schema_version` (integer), `number` (decimal string), `digit_count` (integer), `natural_position` (decimal string) |
+| `early` | `schema_version` (integer), `number` (decimal string), `digit_count` (integer), `natural_position` (decimal string), `first_position` (decimal string), `is_early` (boolean), `early_frequency` (integer), `advance_digits` (decimal string) |
 
-All potentially large integers are decimal strings so consumers can parse them losslessly. Phase 1 does not emit `is_early`, `first_position`, or frequency fields, because those properties have not been computed.
+Potentially large positions, targets, and advance distances are decimal strings so consumers can parse them losslessly. `early_frequency` is an integer within the bounded target range. `inspect` retains its Phase 1 schema; use `early` for early-bird fields.
 
 ## Planned dataset contract
 
@@ -98,4 +102,4 @@ OEIS conventions must be inspected per sequence. An initial zero and a zero-base
 
 Normality is an asymptotic property. Finite block deviation `delta_q(T)` and early-frequency `E(m)` are different quantities; neither finite scanning nor graphics proves a general normality theorem. Existing results, new computational findings, and hypotheses will be labeled separately.
 
-Core validation uses independent string concatenation through 10,000, known examples and boundaries, and a wider-arithmetic closed-form oracle for large positions. Only the test oracle uses the Apple Clang/GCC `__uint128_t` extension; production code uses standard C++20 fixed-width arithmetic. Prefix generation at one million checks length and endpoint, not early-bird counts. Legacy files remain read-only.
+Core validation uses independent string concatenation through 10,000, known examples and boundaries, and a wider-arithmetic closed-form oracle for large positions. Only the test oracle uses the Apple Clang/GCC `__uint128_t` extension; production code uses standard C++20 fixed-width arithmetic. Early validation compares all positions with direct substring search through 9,999, compares first positions and frequencies between both engines through one million, and verifies selected carry cases by direct search. See the [Phase 2 report](../PHASE2_REPORT.md). Legacy files remain read-only.
