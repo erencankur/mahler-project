@@ -133,7 +133,7 @@ Deney çıktıları için `results/` altında çalış; dizin Git tarafından yo
 | `analysis-1000000.json` | tek JSON belgesi | Frekans, asal, mekanizma ve sonlu blok özetleri. |
 | `plot-data/*.csv` | on derlenmiş tablo | İstatistik grafiklerinin yeniden üretilebilir girdileri. |
 
-İki eski-liste-uyumlu CSV şu sütunları kullanır: `number,digit_count,first_position,natural_position,early_frequency,advance_digits`. Her satır erkencidir; `early_frequency`, örtüşmeler dahil doğal konumdan önceki farklı başlangıçları sayar. `manifest.json` iki dosyayı da denetler. Küçük örnek ve alan tanımları için tam [CSV dışa aktarma rehberine](docs/LEGACY_CSV_EXPORTS.md) bak.
+İki eski-liste-uyumlu CSV şu sütunları kullanır: `number,digit_count,first_position,natural_position,early_frequency,advance_digits`. Her satır erkencidir; `early_frequency`, örtüşmeler dahil doğal konumdan önceki farklı başlangıçları sayar. `manifest.json` iki dosyayı da denetler.
 
 Tam çıktıyı bağımsız denetlemek için özet ve görünüm dosyalarından sonra verilen standart kitaplık betiğini çalıştır:
 
@@ -145,9 +145,7 @@ python3 scripts/verify_exports.py \
 
 ## Doğrulama
 
-Çekirdek kontrolleri 10.000'e kadar bağımsız oluşturulmuş öneği, büyük konumları ve taşmaları kapsar. Erkencilik kontrolleri 9.999'a kadar bütün erken konumları doğrudan metin aramasıyla, bir milyona kadar her hedefin ilk konumunu ve frekansını iki C++ motoruyla karşılaştırır; seçili elde örnekleri ayrıca bağımsız aranır. Bir milyonluk taramada **838.385** erkenci sayı ve **2.688.255** erken konum bulundu. Toplu çıktı testleri şemaları, tekrarları ve hatalı seçenekleri sınar. İsteğe bağlı [çıktı doğrulayıcısı](scripts/verify_exports.py) tam CSV/JSON dosyalarını ve her konumu dizi metnine karşı denetler. Sonuçlar ve ölçümler [Faz 3 raporunda](docs/PHASE3_REPORT.md).
-
-[Faz 4 analizi](docs/PHASE4_REPORT.md), frekansları, asal ve özel sayı kümelerinin paydalarını, sınır mekanizmalarını ve sonlu blok istatistiklerini açıklar. [Faz 5](docs/PHASE5_REPORT.md), bir milyon koordinatın denetimini, PNG piksel kontrollerini, özet doğrulamasını ve grafikleri ekler.
+Çekirdek kontrolleri 10.000'e kadar bağımsız oluşturulmuş öneği, büyük konumları ve taşmaları kapsar. Erkencilik kontrolleri 9.999'a kadar bütün erken konumları doğrudan metin aramasıyla, bir milyona kadar her hedefin ilk konumunu ve frekansını iki C++ motoruyla karşılaştırır; seçili elde örnekleri ayrıca bağımsız aranır. Bir milyonluk taramada **838.385** erkenci sayı ve **2.688.255** erken konum bulundu. Toplu çıktı testleri şemaları, tekrarları ve hatalı seçenekleri sınar. İsteğe bağlı [çıktı doğrulayıcısı](scripts/verify_exports.py) tam CSV/JSON dosyalarını ve her konumu dizi metnine karşı denetler.
 
 ## Grafikler
 
@@ -179,10 +177,6 @@ ctest --test-dir build-sanitize --output-on-failure
 
 - [Matematiksel tanımlar ve API sözleşmesi](docs/tr/SPECIFICATION.md)
 - [İki dilli yol haritası, araştırma kaynakları ve grafik kararları](ROADMAP.md)
-- [Faz 2 doğrulaması ve eski listelerin karşılaştırması](docs/PHASE2_REPORT.md)
-- [Faz 3 veri seti, sağlama toplamları ve ölçümleri](docs/PHASE3_REPORT.md)
-- [Faz 4 matematiksel analiz ve örnekler](docs/PHASE4_REPORT.md)
-- [Faz 5 grafikler, geometri, algoritmalar ve yorum](docs/PHASE5_REPORT.md)
 - [Katkı rehberi](CONTRIBUTING.md)
 - [Sürüm notları](CHANGELOG.md)
 - [OEIS A033307: Champernowne rakamları](https://oeis.org/A033307)

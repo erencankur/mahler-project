@@ -252,9 +252,9 @@ mahler plot-data --max 1000000 --output-dir results/plot-data
 mahler ulam --max 10000 --layer early --output figures/ulam-early.svg
 ```
 
-**TR:** `digit`, `inspect`, `early`, `scan`, `benchmark`, `analyze`, `plot-data` ve `ulam` çalışıyor. Grafik seçenekleri ve yeniden üretim [Faz 5 raporunda](docs/PHASE5_REPORT.md) açıklanır. Komut isimleri ve makineye yönelik alan adları İngilizce, kullanım belgeleri iki dildir.
+**TR:** `digit`, `inspect`, `early`, `scan`, `benchmark`, `analyze`, `plot-data`, `ulam` ve `legacy-csv` çalışıyor. Grafik seçenekleri ve yeniden üretim ana README'de açıklanır. Komut isimleri ve makineye yönelik alan adları İngilizce, kullanım belgeleri iki dildir.
 
-**EN:** `digit`, `inspect`, `early`, `scan`, `benchmark`, `analyze`, `plot-data`, and `ulam` are implemented. Graphics options and reproduction are documented in the [Phase 5 report](docs/PHASE5_REPORT.md). Command names and machine-readable fields are English; usage documentation is bilingual.
+**EN:** `digit`, `inspect`, `early`, `scan`, `benchmark`, `analyze`, `plot-data`, `ulam`, and `legacy-csv` are implemented. Graphics options and reproduction are documented in the main README. Command names and machine-readable fields are English; usage documentation is bilingual.
 
 ### Summary fields / Özet alanları
 
@@ -553,7 +553,7 @@ Date / Tarih: 2026-09-30.
 
 ## 16. Phase 2 delivery / Faz 2 teslimi
 
-Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı kanıt: [Phase 2 verification / Faz 2 doğrulaması](docs/PHASE2_REPORT.md).
+Date / Tarih: 2026-09-30. Validation completed with direct prefix matching and an independent reconstruction engine. / Doğrulama, doğrudan önek eşleştirmesi ve bağımsız yeniden kurma motoruyla tamamlandı.
 
 - **TR:** `scan_early(maximum)` sayısal pencere motoru, `reconstruct_early_positions(m)` kaynak yeniden kurma motoru ve `early` metin/JSON komutu eklendi. **EN:** Added the numeric-window `scan_early(maximum)` engine, source reconstruction `reconstruct_early_positions(m)`, and text/JSON `early` command.
 - **TR:** 9.999'a kadar her hedefin bütün erken konumları bağımsız örtüşmeli metin aramasıyla uyuştu. 1.000.000'a kadar her hedefin ilk konumu ve frekansı iki C++ motorunda eşleşti; seçili büyük/elde örnekleri metinle ayrıca doğrulandı. **EN:** Every early position through 9,999 agreed with independent overlapping substring search. Both C++ engines agreed on first positions and frequencies through 1,000,000; selected large/carry examples also matched direct search.
@@ -563,7 +563,7 @@ Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı 
 
 ## 17. Phase 3 delivery / Faz 3 teslimi
 
-Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı kanıt: [Phase 3 dataset and measurements / Faz 3 veri seti ve ölçümler](docs/PHASE3_REPORT.md).
+Date / Tarih: 2026-09-30. Dataset export, checksums, and measurements are available through the CLI. / Veri seti dışa aktarımı, sağlama toplamları ve ölçümler CLI üzerinden kullanılabilir.
 
 - **TR:** `scan` CSV/JSON özetleri, isteğe bağlı konum CSV'si ve varsayılan/özel yollu manifest üretir. `benchmark` motorları dosya yazımından ayrı ölçer. **EN:** `scan` generates CSV/JSON summaries, optional occurrence CSV, and a default/custom manifest. `benchmark` measures engines separately from file writing.
 - **TR:** Bir milyon özet ve 2.688.255 erken konum kaydı üretildi; 838.385 erkenci hedef sayıldı. Yerel dosyalar `results/` altında Git dışında tutulur. **EN:** Generated one million summaries and 2,688,255 early occurrence records, with 838,385 early targets. Local files are ignored under `results/`.
@@ -573,7 +573,7 @@ Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı 
 
 ## 18. Phase 4 delivery / Faz 4 teslimi
 
-Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı kanıt: [Phase 4 analysis / Faz 4 analizi](docs/PHASE4_REPORT.md).
+Date / Tarih: 2026-09-30. Frequency, prime, mechanism, and finite-block analysis are available through `analyze`. / Frekans, asal, mekanizma ve sonlu blok analizi `analyze` ile kullanılabilir.
 
 - **TR:** `analyze` komutu basamak grubu, frekans, ilk görünüm, asal/bileşik, palindrom/emirp/Fibonacci, döndürme tanığı, sınır/elde ve blok istatistiklerini şema sürümü 1 JSON olarak üretir. **EN:** The `analyze` command produces schema-version-1 JSON for digit groups, frequencies, first appearances, prime/composite, palindrome/emirp/Fibonacci, rotation certificates, boundary/carry mechanisms, and block statistics.
 - **TR:** Her asal ve özel küme sonucu, aynı basamak grubundaki açık paydasıyla raporlandı. `1` asal/bileşik sınıfı dışında tutuldu; emirp tanımı ve blok sapması açıkça belgelendi. **EN:** Every prime and special-subset result reports an explicit denominator inside its digit group. `1` is outside prime/composite classes; emirp definition and block deviation are documented explicitly.
@@ -582,7 +582,7 @@ Date / Tarih: 2026-09-30. Detailed bilingual evidence / İki dilli ayrıntılı 
 
 ## 19. Phase 5 delivery / Faz 5 teslimi
 
-Date / Tarih: 2026-09-30. Evidence / Kanıt: [Phase 5 report / Faz 5 raporu](docs/PHASE5_REPORT.md), [figure catalog / grafik kataloğu](figures/README.md).
+Date / Tarih: 2026-09-30. Figures and source tables: [figure catalog / grafik kataloğu](figures/README.md).
 
 - **TR:** C++ `ulam` komutu yedi katmanı SVG/PNG üretir; `plot-data` 10 özet tablo ve veri manifesti hazırlar. PNG desteği isteğe bağlı libpng bağımlılığıdır. **EN:** C++ `ulam` exports seven SVG/PNG layers; `plot-data` generates ten aggregate tables and a manifest. PNG support is an optional libpng dependency.
 - **TR:** 12 istatistik grafiği iki dilde üç biçimde, ayrıca küçük/büyük spiral katmanları üretildi: toplam 88 görsel. Gnuplot betiği ve tek üretim akışı sürümlenir. **EN:** Twelve statistical charts were generated in two languages and three formats, plus small/large spiral layers: 88 figures total. Gnuplot scripts and the reproduction workflow are versioned.

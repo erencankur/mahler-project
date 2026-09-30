@@ -1,8 +1,8 @@
 # Figure catalog / Grafik kataloğu
 
-**TR:** Aralık `1..1000000`, taban 10, konumlar 1 tabanlıdır. C++ hesaplamalarıyla üretilen küçük [kaynak tabloları](data/) ve seçilmiş görseller bu dizinde bulunur. Tanımlar, renkler, örnekler ve yorum sınırları [Faz 5 raporundadır](../docs/PHASE5_REPORT.md). Tam seti `bash scripts/render_figures.sh` ile `results/figures/` altında üret.
+**TR:** Aralık `1..1000000`, taban 10, konumlar 1 tabanlıdır. C++ hesaplamalarıyla üretilen küçük [kaynak tabloları](data/) ve seçilmiş görseller bu dizinde bulunur. Renkler, katmanlar ve yeniden üretim komutları aşağıda açıklanır. Tam seti `bash scripts/render_figures.sh` ile `results/figures/` altında üret.
 
-**EN:** Scope is `1..1000000`, base 10, with 1-based positions. This directory contains small C++-generated [source tables](data/) and selected figures. Definitions, colors, examples, and interpretation limits are in the [Phase 5 report](../docs/PHASE5_REPORT.md). Regenerate the complete set under `results/figures/` with `bash scripts/render_figures.sh`.
+**EN:** Scope is `1..1000000`, base 10, with 1-based positions. This directory contains small C++-generated [source tables](data/) and selected figures. Colors, layers, and reproduction commands are explained below. Regenerate the complete set under `results/figures/` with `bash scripts/render_figures.sh`.
 
 ## Statistical charts / İstatistik grafikleri
 

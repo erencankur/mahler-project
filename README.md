@@ -133,7 +133,7 @@ Write experimental output below `results/`; it is ignored by Git so full million
 | `analysis-1000000.json` | one JSON document | Frequency, prime, mechanism, and finite-block summaries. |
 | `plot-data/*.csv` | ten aggregate tables | Reproducible inputs for the statistical charts. |
 
-The two legacy-compatible CSV files use `number,digit_count,first_position,natural_position,early_frequency,advance_digits`. Every row is early; `early_frequency` counts distinct starts before the natural one, including overlaps. Their `manifest.json` checks both files. See the complete [CSV export guide](docs/LEGACY_CSV_EXPORTS.md), including a small example and field definitions.
+The two legacy-compatible CSV files use `number,digit_count,first_position,natural_position,early_frequency,advance_digits`. Every row is early; `early_frequency` counts distinct starts before the natural one, including overlaps. Their `manifest.json` checks both files.
 
 To verify a complete export independently, use the included standard-library script after creating the summary and occurrence files:
 
@@ -145,9 +145,7 @@ python3 scripts/verify_exports.py \
 
 ## Validation
 
-Core checks cover an independently constructed prefix through 10,000, large positions, and overflow. Early-bird checks compare all early positions against direct substring searches through 9,999, compare both engines' first positions and frequencies for every target through one million, and check selected carry cases independently. The one-million scan found **838,385** early birds and **2,688,255** early occurrence positions. Batch tests verify output schemas, repetition, and invalid options. The optional [export verifier](scripts/verify_exports.py) checks complete CSV/JSON outputs and every occurrence against the digit sequence. Results and measurements are in the [Phase 3 report](docs/PHASE3_REPORT.md).
-
-The [Phase 4 analysis](docs/PHASE4_REPORT.md) documents prime and special-subset denominators, frequency distributions, mechanisms, and finite block statistics. [Phase 5](docs/PHASE5_REPORT.md) adds a million-coordinate geometry test, decoded PNG checks, aggregate verification, and figures.
+Core checks cover an independently constructed prefix through 10,000, large positions, and overflow. Early-bird checks compare all early positions against direct substring searches through 9,999, compare both engines' first positions and frequencies for every target through one million, and check selected carry cases independently. The one-million scan found **838,385** early birds and **2,688,255** early occurrence positions. Batch tests verify output schemas, repetition, and invalid options. The optional [export verifier](scripts/verify_exports.py) checks complete CSV/JSON outputs and every occurrence against the digit sequence.
 
 ## Figures
 
@@ -179,10 +177,6 @@ ctest --test-dir build-sanitize --output-on-failure
 
 - [Mathematical and API specification](docs/en/SPECIFICATION.md)
 - [Bilingual roadmap, research references, and graphics decisions](ROADMAP.md)
-- [Phase 2 verification and archived-list comparison](docs/PHASE2_REPORT.md)
-- [Phase 3 dataset, checksums, and measurements](docs/PHASE3_REPORT.md)
-- [Phase 4 mathematical analysis and examples](docs/PHASE4_REPORT.md)
-- [Phase 5 figures, geometry, algorithms, and interpretation](docs/PHASE5_REPORT.md)
 - [Contributing](CONTRIBUTING.md)
 - [Changelog](CHANGELOG.md)
 - [OEIS A033307: Champernowne digits](https://oeis.org/A033307)
